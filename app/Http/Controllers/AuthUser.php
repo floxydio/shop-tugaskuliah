@@ -27,8 +27,11 @@ class AuthUser extends Controller
         // database
         $err = DB::table("users")->where("username", $data["username"])->where("password", $data["password"])->first();
         if ($err) {
-            Cookie::queue("username", $data["username"]);
-            return view("dashboard");
+            echo $err->id;
+          
+            // Cookie::queue("username", $data["username"]);
+            // Cookie::queue("id_user",);
+            // return view("dashboard");
         } else {
             return redirect("/sign-in");
         }

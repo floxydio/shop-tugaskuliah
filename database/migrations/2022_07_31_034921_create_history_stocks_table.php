@@ -15,6 +15,10 @@ class CreateHistoryStocksTable extends Migration
     {
         Schema::create('history_stocks', function (Blueprint $table) {
             $table->id();
+            $table->integer("cabang_id");
+            $table->string("nama_product");
+            $table->integer("quantity");
+            $table->string("image")->nullable();
             $table->timestamps();
         });
     }

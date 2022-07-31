@@ -58,7 +58,7 @@
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed"  href="/" ">
+                <a class="nav-link collapsed"  href="{{route("checkstock")}}">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Check Stok</span>
                 </a>
@@ -74,7 +74,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
+                    <span>Registrasi Cabang</span></a>
             </li>
 
             <!-- Divider -->
@@ -433,17 +433,11 @@
                                             <div class="modal-body">
 
                                                 <div class="form-group">
-                                                    <label for="name">Nama</label>
-                                                    <input type="text" name="nama" class="form-control" id="nama" aria-describedby="emailHelp" placeholder="Nama">
+                                                    <label for="name">Quantity</label>
+                                                    <input type="text" name="nama" class="form-control" id="nama" aria-describedby="emailHelp" placeholder="Berapa banyak yang diinginkan...">
                                                   </div>
-                                                  <div class="form-group">
-                                                    <label for="buku">Nama Buku</label>
-                                                    <input type="text" name="nama_buku" calass="form-control" placeholder="Nama Buku" readonly>
-                                                  </div>
-                                                <div class="form-group">
-                                                    <label for="name">Ajukan sampai tanggal</label>
-                                                    <input type="date" name="tanggal" class="form-control" id="tanggal" placeholder="Enter your date">
-                                                  </div>
+                                                
+                                                  <a href="#" class="btn btn-primary">Ajukan</a>                  
                                             </div>    
                                 
                                 </td>

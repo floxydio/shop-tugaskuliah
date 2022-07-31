@@ -46,7 +46,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
@@ -57,7 +57,7 @@
             <!-- Nav Item - Pages Collapse Menu -->
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed"  href="/" ">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Check Stok</span>
@@ -322,7 +322,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Total Semua Product</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$countProduct}}</div>
+                                            {{-- <div class="h5 mb-0 font-weight-bold text-gray-800">{{$countProduct}}</div> --}}
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -342,7 +342,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                Jumlah Cabang</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$countToko}}</div>
+                                            {{-- <div class="h5 mb-0 font-weight-bold text-gray-800">{{$countToko}}</div> --}}
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -399,60 +399,7 @@
                             </div>
                         </div>
                     </div>
-                        <table class="table">
-                            <thead>
-                              <tr>
-                                <th scope="col">No</th>
-                                <th scope="col">Barang</th>
-                                <th scope="col">Kapasitas</th>
-                                <th scope="col">Cabang</th>
-                                <th scope="col">Aksi</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($dbProduct as $products)
-                              <tr>
-                                <th scope="row">{{ $products->id}}</th>
-                                <td>{{$products->nama}}</td>
-                                <td>{{$products->quantity}}</td>
-                                <td>{{$products->name}}</td>
-                                <td>
-                                    <button class="btn btn-primary w-100" data-toggle="modal" data-target="#exampleModal">Pinjam</button>
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                          <div class="modal-content">
-                                            <form method="POST">
-                                                @csrf
-
-                                            <div class="modal-header">
-                                              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                              </button>
-                                            </div>
-                                            <div class="modal-body">
-
-                                                <div class="form-group">
-                                                    <label for="name">Nama</label>
-                                                    <input type="text" name="nama" class="form-control" id="nama" aria-describedby="emailHelp" placeholder="Nama">
-                                                  </div>
-                                                  <div class="form-group">
-                                                    <label for="buku">Nama Buku</label>
-                                                    <input type="text" name="nama_buku" calass="form-control" placeholder="Nama Buku" readonly>
-                                                  </div>
-                                                <div class="form-group">
-                                                    <label for="name">Ajukan sampai tanggal</label>
-                                                    <input type="date" name="tanggal" class="form-control" id="tanggal" placeholder="Enter your date">
-                                                  </div>
-                                            </div>    
-                                
-                                </td>
-                                  
-                              </tr>
-                                @endforeach
-                            </tbody>
-                          </table>
-
+                       
 
  
                                             </div>
