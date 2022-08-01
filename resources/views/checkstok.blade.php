@@ -47,7 +47,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="{{route("index")}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -289,10 +289,10 @@
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                {{-- <a class="dropdown-item" href="{{route('logout')}}" data-toggle="modal"  data-target="#logoutModal">
+                                <a class="dropdown-item" href="{{route('logout')}}" data-toggle="modal"  data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
-                                </a> --}}
+                                </a>
                             </div>
                         </li>
 
@@ -306,10 +306,46 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                        <h1 class="h3 mb-0 text-gray-800">Total Stock</h1>
+                        <a href="#" data-toggle="modal" data-target="#tambahStok" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Tambah Stok Cabang</a>
                     </div>
+                    <div class="modal fade" id="tambahStok" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                               <form action="{{route('stock.save')}}" method="post">
+                                @csrf
+                               
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Nama Product</label>
+                                    <input type="text" class="form-control" name="nama_product" id="nama_product" aria-describedby="emailHelp" placeholder="Jumlah Stok">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Quantity</label>
+                                    <input type="number" class="form-control" name="quantity" id="quantity" aria-describedby="emailHelp" placeholder="Harga">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Cabang</label>
+                                    <input type="text" class="form-control" name="cabang_id" id="cabang_id" aria-describedby="emailHelp" placeholder="{{$dataCookie}}" readonly>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                  </div>
+                               </form>
+                             
+                            </div>
+                           
+                          </div>
+                        </div>
+                      </div>
 
                     <!-- Content Row -->
                     <div class="row">
@@ -399,7 +435,28 @@
                             </div>
                         </div>
                     </div>
-                       
+                       <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Barang</th>
+                            <th scope="col">Kapasitas</th>
+                            <th scope="col">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($dbProduct as $products)
+                          <tr>
+                            <th scope="row">{{ $products->id}}</th>
+                            <td>{{$products->nama_product}}</td>
+                            <td>{{$products->quantity}}</td>
+                            <td>
+                                <a href="#" class="btn btn-danger" >Edit</a>    
+                            </td>                             
+                          </tr>
+                            @endforeach
+                        </tbody>
+                      </table>
 
  
                                             </div>
@@ -411,6 +468,8 @@
                             </div>
                         </div>
                         {{-- @endforeach --}}
+
+                        
 
                   
                         <!-- Content Row -->
@@ -448,7 +507,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="/">Logout</a>
+                    <a class="btn btn-primary" href={{route("logout")}}>Logout</a>
                 </div>
             </div>
         </div>

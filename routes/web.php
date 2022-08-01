@@ -16,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [Product::class, "index"]);
+Route::get('/', [Product::class, "index"])->name("index");
 Route::get("/check-stock", [Product::class, "checkStock"])->name("checkstock");
 Route::get("/sign-in", [AuthUser::class, "index"])->name("sign-in");
 Route::post("login/save", [AuthUser::class, "login"])->name("login.save");
+Route::get("/logout", [AuthUser::class, "logout"])->name("logout");
+Route::post("/history-stock", [Product::class, "postHistoryStock"])->name("stock.save");
+Route::patch("/history-stock/:id", [Product::class, "editHistoryStock"])->name("stock.edit");

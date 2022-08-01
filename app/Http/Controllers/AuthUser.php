@@ -27,14 +27,18 @@ class AuthUser extends Controller
         // database
         $err = DB::table("users")->where("username", $data["username"])->where("password", $data["password"])->first();
         if ($err) {
-            echo $err->id;
-          
-            // Cookie::queue("username", $data["username"]);
-            // Cookie::queue("id_user",);
-            // return view("dashboard");
+            // echo $err->id;       
+            Cookie::queue("username", $data["username"]);
+            Cookie::queue("id_user", $err->id);
+            return redirect("/");
         } else {
             return redirect("/sign-in");
         }
+    }
 
+    public function logout() {
+        Cookie::queue(Cookie::forget('username'));
+        Cookie::queue(Cookie::forget('id_user'));
+        return redirect("/sign-in");
     }
 }

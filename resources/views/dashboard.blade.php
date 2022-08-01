@@ -322,7 +322,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Total Semua Product</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$countProduct}}</div>
+                                            {{-- <div class="h5 mb-0 font-weight-bold text-gray-800">{{$countProduct}}</div> --}}
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -342,7 +342,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                Jumlah Cabang</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$countToko}}</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$countToko ?? ''}}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
