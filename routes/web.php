@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthUser;
 use App\Http\Controllers\Product;
+use App\Http\Controllers\Stocks;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +24,7 @@ Route::post("login/save", [AuthUser::class, "login"])->name("login.save");
 Route::get("/logout", [AuthUser::class, "logout"])->name("logout");
 Route::post("/history-stock", [Product::class, "postHistoryStock"])->name("stock.save");
 Route::patch("/history-stock/:id", [Product::class, "editHistoryStock"])->name("stock.edit");
+Route::post("/stock-request", [Stocks::class, "setStock"])->name("stock.request");
+Route::get("/edit/status/{id}", [Stocks::class, "approveStock"])->name("stock.edit.status");
+Route::get("/status", [Stocks::class, "status"])->name("stock.status");
+Route::get("/edit/status-done/{id}", [Stocks::class, "finishStock"])->name("done.stock");

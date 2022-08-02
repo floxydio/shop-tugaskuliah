@@ -14,8 +14,11 @@ class Product extends Controller
         $countToko = DB::table("users")->count();
         $countProduct = DB::table("products")->count();
         $cookie = Cookie::get('username');
+        $cookieId = Cookie::get("id_user");
+        $dbGetStock = DB::select("select stock_approves.id,stock_approves.quantity,users.id from_id, usr.id to_id,stock_approves.nama_product,users.name from_cabang, usr.name to_cabang, stock_approves.status FROM `stock_approves` LEFT JOIN users ON stock_approves.from_id = users.id LEFT JOIN users usr ON stock_approves.to_id = usr.id WHERE to_id != ?",[$cookieId]);
+       
         if ($cookie != null) {
-            return view('dashboard', compact("countProduct", "countToko", "dbProduct") );
+            return view('dashboard', compact("countProduct", "countToko", "dbProduct","cookieId", "cookie", "dbGetStock") );
         } else {
             return view('login');
         }

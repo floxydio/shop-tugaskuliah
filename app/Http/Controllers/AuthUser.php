@@ -13,7 +13,7 @@ class AuthUser extends Controller
         $cookie = Cookie::get('user');
         echo $cookie;
         if (Cookie::get("username") != null) {
-            return view("dashboard");
+            return redirect("/");
         } else {
         return view("login");
         }

@@ -57,7 +57,7 @@
             <!-- Nav Item - Pages Collapse Menu -->
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link collapsed"  href="/" ">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Check Stok</span>
@@ -78,7 +78,7 @@
             </li>
 
             <hr class="sidebar-divider" >
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed"  href="{{route("checkstock")}}">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Status</span>
@@ -314,51 +314,8 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Total Stock</h1>
-                        <a href="#" data-toggle="modal" data-target="#tambahStok" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Tambah Stok Cabang</a>
-                    </div>
-                    <div class="modal fade" id="tambahStok" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                               <form action="{{route('stock.save')}}" method="post">
-                                @csrf
-                               
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Nama Product</label>
-                                    <input type="text" class="form-control" name="nama_product" id="nama_product" aria-describedby="emailHelp" placeholder="Jumlah Stok">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Quantity</label>
-                                    <input type="number" class="form-control" name="quantity" id="quantity" aria-describedby="emailHelp" placeholder="Harga">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Cabang</label>
-                                    <input type="text" class="form-control" name="cabang_id" id="cabang_id" aria-describedby="emailHelp" placeholder="{{$dataCookie}}" readonly>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Save changes</button>
-                                  </div>
-                               </form>
-                             
-                            </div>
-                           
-                          </div>
-                        </div>
-                      </div>
-
                     <!-- Content Row -->
                     <div class="row">
-
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
@@ -444,8 +401,53 @@
                             </div>
                         </div>
                     </div>
-                      
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">No</th>
+                          <th scope="col">Barang</th>
+                          <th scope="col">Kapasitas</th>
+                          <th scope="col">Permintaan dari</th>
+                          <th scope="col">Status</th>
+                          <th scope="col">Aksi</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          @foreach ($dbGetStock as $products)
+                 
+                        <tr>
+                          <th scope="row">{{ $products->id}}</th>
+                          <td>{{$products->nama_product}}</td>
+                          <td>{{$products->quantity}}</td>
+                          <td>{{$products->to_cabang}}</td>
+                          @if ($products->status == 0)
+                          <td>Belum Dikirim</td>
+                          @else
+                          <td>Sudah Dikirim</td>
+                          @endif
+                          <td>
+                             @if ($products->status == 1) 
+                              <a class="btn btn-danger" href="{{route('done.stock', $products->id)}}">
+                                  Laporan Diterima
+                              </a>
+                              @else
+                              <a class="btn btn-danger disabled" href="{{route('stock.edit.status', $products->id)}}">
+                                  Selesai
+                              </a>
+                              @endif
+                              
+                          
+                          </td>
+                            
+                        </tr>
+                          @endforeach
+                      </tbody>
+                    </table>
+                  
  
+
+
+
                                             </div>
                                           </div>
                                           
@@ -456,9 +458,6 @@
                         </div>
                         {{-- @endforeach --}}
 
-                        
-
-                  
                         <!-- Content Row -->
                 <!-- /.container-fluid --> --
 

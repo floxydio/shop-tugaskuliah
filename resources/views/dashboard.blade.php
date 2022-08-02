@@ -62,9 +62,7 @@
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Check Stok</span>
                 </a>
-
             </li>
-
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -76,6 +74,15 @@
                     <i class="fas fa-fw fa-table"></i>
                     <span>Registrasi Cabang</span></a>
             </li>
+
+            <hr class="sidebar-divider" >
+            <li class="nav-item">
+                <a class="nav-link collapsed"  href="{{route("stock.status")}}">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Status</span>
+                </a>
+            </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -289,10 +296,10 @@
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                {{-- <a class="dropdown-item" href="{{route('logout')}}" data-toggle="modal"  data-target="#logoutModal">
+                                <a class="dropdown-item" href="{{route('logout')}}" data-toggle="modal"  data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
-                                </a> --}}
+                                </a>
                             </div>
                         </li>
 
@@ -399,6 +406,53 @@
                             </div>
                         </div>
                     </div>
+
+                    <h4 style="text-align: center">Permintaan barang</h4>    
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Barang</th>
+                            <th scope="col">Kapasitas</th>
+                            <th scope="col">Permintaan dari</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Aksi</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($dbGetStock as $products)
+                   
+                          <tr>
+                            <th scope="row">{{ $products->id}}</th>
+                            <td>{{$products->nama_product}}</td>
+                            <td>{{$products->quantity}}</td>
+                            <td>{{$products->to_cabang}}</td>
+                            @if ($products->status == 0)
+                            <td>Belum Dikirim</td>
+                            @else
+                            <td>Sudah Dikirim</td>
+                            @endif
+                            <td>
+                               @if ($products->status == 0) 
+                                <a class="btn btn-danger" href="{{route('stock.edit.status', $products->id)}}">
+                                    Terima
+                                </a>
+                                @else
+                                <a class="btn btn-danger disabled" href="{{route('stock.edit.status', $products->id)}}">
+                                    Sedang Proses
+                                </a>
+                                @endif
+                                
+            
+                            
+                            </td>
+                              
+                          </tr>
+                            @endforeach
+                        </tbody>
+                      </table>
+                      <div class="margin-custom" style="margin-top: 200px"></div>
+                      <h4 style="text-align: center">Data Toko</h4>    
                         <table class="table">
                             <thead>
                               <tr>
@@ -421,24 +475,41 @@
                                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                           <div class="modal-content">
-                                            <form method="POST">
+                                            <form method="POST" action="{{route('stock.request')}}">
                                                 @csrf
 
                                             <div class="modal-header">
-                                              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                              </button>
-                                            </div>
-                                            <div class="modal-body">
-
+                                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span>
+                                                </button>
+                                              </div>
+                                              <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label for="name">Nama Product</label>
+                                                    <input type="text" name="nama_product" class="form-control" id="nama_product" aria-describedby="emailHelp" value="{{old('nama_product', $products->nama)}}" readonly>
+                                                  </div>
+                                                <div class="form-group">
+                                                    <label for="name">Dari</label>
+                                                    <input type="text" name="from_id" class="form-control" id="from_id" aria-describedby="emailHelp" value="{{old('from_id', $products->id)}}" readonly>
+                                                  </div>
+                                                  
+                                                  <div class="form-group">
+                                                    <label for="name">Untuk</label>
+                                                    <input type="text" name="to_id" class="form-control" id="to_id" aria-describedby="emailHelp" value="{{old('to_id', $cookieId)}}" readonly>
+                                                  </div>
                                                 <div class="form-group">
                                                     <label for="name">Quantity</label>
-                                                    <input type="text" name="nama" class="form-control" id="nama" aria-describedby="emailHelp" placeholder="Berapa banyak yang diinginkan...">
+                                                    <input type="text" name="quantity" class="form-control" id="quantity" aria-describedby="emailHelp" placeholder="Berapa banyak yang diinginkan...">
                                                   </div>
                                                 
-                                                  <a href="#" class="btn btn-primary">Ajukan</a>                  
-                                            </div>    
+                                                  <button type="submit" class="btn btn-primary">Ajukan</button>                  
+                                              </div>   
+
+                                             
+                                            </form>    
+ 
+                
                                 
                                 </td>
                                   
@@ -483,23 +554,23 @@
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="/">Logout</a>
-                </div>
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href={{route("logout")}}>Logout</a>
             </div>
         </div>
     </div>
+</div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
