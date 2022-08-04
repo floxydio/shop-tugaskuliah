@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\StockExport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Stocks extends Controller
 {
@@ -24,6 +26,7 @@ class Stocks extends Controller
             return redirect("/");
         }
     }
+    
 
     public function finishStock($id) {
         $data = [

@@ -29,8 +29,6 @@
         <strong>{{ $message }}</strong>
     </div>
     @endif  
-    <!-- Sidebar 
-    <!-- Page Wrapper -->
     <div id="wrapper">
         <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -46,8 +44,8 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{route("index")}}">
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -57,14 +55,12 @@
             <!-- Nav Item - Pages Collapse Menu -->
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item active">
-                <a class="nav-link collapsed"  href="/" ">
+            <li class="nav-item">
+                <a class="nav-link collapsed"  href="{{route("checkstock")}}">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Check Stok</span>
                 </a>
-
             </li>
-
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -79,7 +75,7 @@
 
             <hr class="sidebar-divider" >
             <li class="nav-item">
-                <a class="nav-link collapsed"  href="{{route("checkstock")}}">
+                <a class="nav-link collapsed"  href="{{route("stock.status")}}">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Status</span>
                 </a>
@@ -315,46 +311,10 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Total Stock</h1>
-                        <a href="#" data-toggle="modal" data-target="#tambahStok" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Tambah Stok Cabang</a>
+                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <a href="{{route('stock.export')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
-                    <div class="modal fade" id="tambahStok" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                               <form action="{{route('stock.save')}}" method="post">
-                                @csrf
-                               
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Nama Product</label>
-                                    <input type="text" class="form-control" name="nama_product" id="nama_product" aria-describedby="emailHelp" placeholder="Jumlah Stok">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Quantity</label>
-                                    <input type="number" class="form-control" name="quantity" id="quantity" aria-describedby="emailHelp" placeholder="Harga">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Cabang</label>
-                                    <input type="text" class="form-control" name="cabang_id" id="cabang_id" aria-describedby="emailHelp" placeholder="{{$dataCookie}}" readonly>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Save changes</button>
-                                  </div>
-                               </form>
-                             
-                            </div>
-                           
-                          </div>
-                        </div>
-                      </div>
 
                     <!-- Content Row -->
                     <div class="row">
@@ -387,7 +347,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                Jumlah Cabang</div>
-                                            {{-- <div class="h5 mb-0 font-weight-bold text-gray-800">{{$countToko}}</div> --}}
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$countToko ?? ''}}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -444,31 +404,53 @@
                             </div>
                         </div>
                     </div>
-                      
-                    <table class="table">
+                      <h4 style="text-align: center">Data Kirim - Terima barang</h4>    
+                      <table class="table">
                         <thead>
                           <tr>
                             <th scope="col">No</th>
                             <th scope="col">Barang</th>
                             <th scope="col">Kapasitas</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Permintaan dari</th>
+                            <th scope="col">Menuju ke </th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Aksi</th>
                           </tr>
                         </thead>
                         <tbody>
-                            @foreach ($dbProductSss as $products)
+                            @foreach ($dbGetStock as $products)
+                   
                           <tr>
                             <th scope="row">{{ $products->id}}</th>
                             <td>{{$products->nama_product}}</td>
                             <td>{{$products->quantity}}</td>
+                            <td>{{$products->to_cabang}}</td>
+                            <td>{{$products->from_cabang}}</td>
+                            @if ($products->status == 0)
+                            <td>Belum Dikirim</td>
+                            @else
+                            <td>Sudah Dikirim</td>
+                            @endif
                             <td>
-                                <a href="#" class="btn btn-danger" >Edit</a>    
-                            </td>                             
+                               @if ($products->status == 1) 
+                                <a class="btn btn-danger" href="{{route('done.stock', $products->id)}}">
+                                    Laporan Diterima
+                                </a>
+                                @else
+                                <a class="btn btn-danger disabled" href="{{route('stock.edit.status', $products->id)}}">
+                                    Selesai
+                                </a>
+                                @endif
+                                
+                            
+                            </td>
+                              
                           </tr>
                             @endforeach
                         </tbody>
                       </table>
                     
- 
+   
                                             </div>
                                           </div>
                                           
@@ -478,8 +460,6 @@
                             </div>
                         </div>
                         {{-- @endforeach --}}
-
-                        
 
                   
                         <!-- Content Row -->
@@ -505,23 +485,23 @@
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href={{route("logout")}}>Logout</a>
-                </div>
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href={{route("logout")}}>Logout</a>
             </div>
         </div>
     </div>
+</div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>

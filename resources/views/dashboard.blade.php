@@ -437,6 +437,9 @@
                                 <a class="btn btn-danger" href="{{route('stock.edit.status', $products->id)}}">
                                     Terima
                                 </a>
+                                @elseif ($products->status == 2) 
+                                <a class="btn btn-danger disabled" href="#">
+                                    Selesai
                                 @else
                                 <a class="btn btn-danger disabled" href="{{route('stock.edit.status', $products->id)}}">
                                     Sedang Proses
