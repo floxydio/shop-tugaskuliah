@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthUser;
 use App\Http\Controllers\Product;
+use App\Http\Controllers\RequestStock;
 use App\Http\Controllers\Stocks;
 use App\Http\Controllers\SuperAdmin;
 use Illuminate\Support\Facades\Cookie;
@@ -31,3 +32,6 @@ Route::get("/status", [Stocks::class, "status"])->name("stock.status");
 Route::get("/edit/status-done/{id}", [Stocks::class, "finishStock"])->name("done.stock");
 Route::get("/superadmin", [SuperAdmin::class, "index"])->name("superadmin");
 Route::get("stock/export/", [SuperAdmin::class, "generateReport"])->name("stock.export");
+Route::get("/request-stock", [RequestStock::class, "index"])->name("request.stock");
+Route::get("/registeruser", [AuthUser::class, "registrasiUser"])->name("registrasi.user");
+Route::post("/registeruser/save", [AuthUser::class, "registrasiAccount"])->name("registrasi.save");

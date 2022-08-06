@@ -43,6 +43,22 @@ class AuthUser extends Controller
         }
     }
 
+    public function registrasiUser() {
+        return view("registrasi");
+    }
+
+    public function registrasiAccount() {
+        $data = [
+            "name" => request("name"),
+            "username" => request("username"),
+            "password" => request("password"),
+            "kota_cabang" => request("kota_cabang"),
+            "role" => 0
+        ];
+        DB::table("users")->insert($data);
+        return redirect("/");
+    }
+
     public function logout() {
         Cookie::queue(Cookie::forget('username'));
         Cookie::queue(Cookie::forget('id_user'));

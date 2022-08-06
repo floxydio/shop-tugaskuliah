@@ -70,7 +70,7 @@
         
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="{{route("registrasi.user")}}">
+                <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Registrasi Cabang</span></a>
             </li>
@@ -319,183 +319,36 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-                    </div>
-
+ 
                     <!-- Content Row -->
-                    <div class="row">
+                    <form action="{{route('registrasi.save')}}" method="post">
+                        @csrf
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Total Semua Product</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$countProduct}}</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="form-group">
+                          <label for="nama">Nama Cabang</label>
+                          <input type="text" class="form-control" id="name" name="name" placeholder="Nama Cabang">
+                      </div>
+                        <div class="form-group">
+                            <label for="nama">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Username">
                         </div>
-
-                        
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                               Jumlah Cabang</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$countCabang}}</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                         </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            <label for="telp">Cabang</label>
+                            <input type="text" class="form-control" id="kota_cabang" name="kota_cabang" placeholder="Cabang">
                         </div>
-
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Pending Requests</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                       
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     
-                      <h4 style="text-align: center">Data Toko</h4>    
-                        <table class="table">
-                            <thead>
-                              <tr>
-                                <th scope="col">No</th>
-                                <th scope="col">Barang</th>
-                                <th scope="col">Kapasitas</th>
-                                <th scope="col">Cabang</th>
-                                <th scope="col">Aksi</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($dbProduct as $products)
-                              <tr>
-                                <th scope="row">{{ $products->id}}</th>
-                                <td>{{$products->nama}}</td>
-                                <td>{{$products->quantity}}</td>
-                                <td>{{$products->name}}</td>
-                                <td>
-                                    <button class="btn btn-primary w-100" data-toggle="modal" data-target="#exampleModal">Pinjam</button>
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                          <div class="modal-content">
-                                            <form method="POST" action="{{route('stock.request')}}">
-                                                @csrf
-
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                  <span aria-hidden="true">&times;</span>
-                                                </button>
-                                              </div>
-                                              <div class="modal-body">
-                                                <div class="form-group">
-                                                    <label for="name">Nama Product</label>
-                                                    <input type="text" name="nama_product" class="form-control" id="nama_product" aria-describedby="emailHelp" value="{{old('nama_product', $products->nama)}}" readonly>
-                                                  </div>
-                                                <div class="form-group">
-                                                    <label for="name">Dari</label>
-                                                    <input type="text" name="from_id" class="form-control" id="from_id" aria-describedby="emailHelp" value="{{old('from_id', $products->id)}}" readonly>
-                                                  </div>
-                                                  
-                                                  <div class="form-group">
-                                                    <label for="name">Untuk</label>
-                                                    <input type="text" name="to_id" class="form-control" id="to_id" aria-describedby="emailHelp" value="{{old('to_id', $cookieId)}}" readonly>
-                                                  </div>
-                                                <div class="form-group">
-                                                    <label for="name">Quantity</label>
-                                                    <input type="text" name="quantity" class="form-control" id="quantity" aria-describedby="emailHelp" placeholder="Berapa banyak yang diinginkan...">
-                                                  </div>
-                                                
-                                                  <button type="submit" class="btn btn-primary">Ajukan</button>                  
-                                              </div>   
-
-                                             
-                                            </form>    
- 
-                
-                                
-                                </td>
-                                  
-                              </tr>
-                                @endforeach
-                            </tbody>
-                          </table>
-
-
- 
-                                            </div>
-                                          </div>
-                                          
-                                          
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {{-- @endforeach --}}
+                    
+                    {{-- @endforeach --}}
 
                   
                         <!-- Content Row -->
-                <!-- /.container-fluid --> --
+                <!-- /.container-fluid --> 
 
             </div>
             <!-- End of Main Content -->

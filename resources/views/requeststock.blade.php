@@ -47,7 +47,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="{{route('index')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -70,7 +70,7 @@
         
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="{{route("registrasi.user")}}">
+                <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Registrasi Cabang</span></a>
             </li>
@@ -84,7 +84,7 @@
             </li>
             <hr class="sidebar-divider" >
             <li class="nav-item">
-                <a class="nav-link collapsed"  href="{{route("request.stock")}}">
+                <a class="nav-link collapsed"  href="{{route("stock.status")}}">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Permintaan Barang</span>
                 </a>
@@ -336,7 +336,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Total Semua Product</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$countProduct}}</div>
+                                            {{-- <div class="h5 mb-0 font-weight-bold text-gray-800">{{$countProduct}}</div> --}}
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -356,7 +356,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                Jumlah Cabang</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$countCabang}}</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$countToko ?? ''}}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -414,72 +414,55 @@
                         </div>
                     </div>
 
-                    
-                      <h4 style="text-align: center">Data Toko</h4>    
-                        <table class="table">
-                            <thead>
-                              <tr>
-                                <th scope="col">No</th>
-                                <th scope="col">Barang</th>
-                                <th scope="col">Kapasitas</th>
-                                <th scope="col">Cabang</th>
-                                <th scope="col">Aksi</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($dbProduct as $products)
-                              <tr>
-                                <th scope="row">{{ $products->id}}</th>
-                                <td>{{$products->nama}}</td>
-                                <td>{{$products->quantity}}</td>
-                                <td>{{$products->name}}</td>
-                                <td>
-                                    <button class="btn btn-primary w-100" data-toggle="modal" data-target="#exampleModal">Pinjam</button>
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                          <div class="modal-content">
-                                            <form method="POST" action="{{route('stock.request')}}">
-                                                @csrf
-
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                  <span aria-hidden="true">&times;</span>
-                                                </button>
-                                              </div>
-                                              <div class="modal-body">
-                                                <div class="form-group">
-                                                    <label for="name">Nama Product</label>
-                                                    <input type="text" name="nama_product" class="form-control" id="nama_product" aria-describedby="emailHelp" value="{{old('nama_product', $products->nama)}}" readonly>
-                                                  </div>
-                                                <div class="form-group">
-                                                    <label for="name">Dari</label>
-                                                    <input type="text" name="from_id" class="form-control" id="from_id" aria-describedby="emailHelp" value="{{old('from_id', $products->id)}}" readonly>
-                                                  </div>
-                                                  
-                                                  <div class="form-group">
-                                                    <label for="name">Untuk</label>
-                                                    <input type="text" name="to_id" class="form-control" id="to_id" aria-describedby="emailHelp" value="{{old('to_id', $cookieId)}}" readonly>
-                                                  </div>
-                                                <div class="form-group">
-                                                    <label for="name">Quantity</label>
-                                                    <input type="text" name="quantity" class="form-control" id="quantity" aria-describedby="emailHelp" placeholder="Berapa banyak yang diinginkan...">
-                                                  </div>
-                                                
-                                                  <button type="submit" class="btn btn-primary">Ajukan</button>                  
-                                              </div>   
-
-                                             
-                                            </form>    
- 
-                
+                    <h4 style="text-align: center">Permintaan barang</h4>    
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Barang</th>
+                            <th scope="col">Kapasitas</th>
+                            <th scope="col">Permintaan dari</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Aksi</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($dbGetStock as $products)
+                   
+                          <tr>
+                            <th scope="row">{{ $products->id}}</th>
+                            <td>{{$products->nama_product}}</td>
+                            <td>{{$products->quantity}}</td>
+                            <td>{{$products->to_cabang}}</td>
+                            @if ($products->status == 0)
+                            <td>Belum Dikirim</td>
+                            @else
+                            <td>Sudah Dikirim</td>
+                            @endif
+                            <td>
+                               @if ($products->status == 0) 
+                                <a class="btn btn-danger" href="{{route('stock.edit.status', $products->id)}}">
+                                    Terima
+                                </a>
+                                @elseif ($products->status == 2) 
+                                <a class="btn btn-danger disabled" href="#">
+                                    Selesai
+                                @else
+                                <a class="btn btn-danger disabled" href="{{route('stock.edit.status', $products->id)}}">
+                                    Sedang Proses
+                                </a>
+                                @endif
                                 
-                                </td>
-                                  
-                              </tr>
-                                @endforeach
-                            </tbody>
-                          </table>
+            
+                            
+                            </td>
+                              
+                          </tr>
+                            @endforeach
+                        </tbody>
+                      </table>
+                      <div class="margin-custom" style="margin-top: 200px"></div>
+                     
 
 
  
