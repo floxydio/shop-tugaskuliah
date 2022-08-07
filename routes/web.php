@@ -35,3 +35,4 @@ Route::get("stock/export/", [SuperAdmin::class, "generateReport"])->name("stock.
 Route::get("/request-stock", [RequestStock::class, "index"])->name("request.stock");
 Route::get("/registeruser", [AuthUser::class, "registrasiUser"])->name("registrasi.user");
 Route::post("/registeruser/save", [AuthUser::class, "registrasiAccount"])->name("registrasi.save");
+Route::post("/edit-stock/{id}", [Product::class, "editHistoryStock"])->name("edit.stock");

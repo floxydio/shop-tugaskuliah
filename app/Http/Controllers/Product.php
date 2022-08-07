@@ -30,13 +30,17 @@ class Product extends Controller
     }
 
     public function editHistoryStock() {
+        $dataCookie = Cookie::get("id_user");
+        $_POST["cabang_id"] = $dataCookie;
+
         $data = [
             "cabang_id" => $_POST["cabang_id"],
             "nama_product" => $_POST["nama_product"],
             "quantity" => $_POST["quantity"]
         
         ];
-        $dbProduct = DB::table("products")->where("id", $data["cabang_id"])->update($data);
+        echo json_encode($data);
+        $dbProduct = DB::table("history_stocks")->where("id", $data["cabang_id"])->update($data);
         if ($dbProduct) {
             return redirect("/check-stock");
         }
@@ -46,6 +50,7 @@ class Product extends Controller
     public function postHistoryStock() {
         $dataCookie = Cookie::get("id_user");
         $_POST["cabang_id"] = $dataCookie;
+        
         $dataCookie = Cookie::get("username");
         $idUser = Cookie::get("id_user");
         $dbProduct = DB::select("SELECT history_stocks.id,history_stocks.nama_product,history_stocks.quantity,history_stocks.image,users.name nama_cabang FROM `history_stocks` LEFT JOIN users ON history_stocks.cabang_id = users.id WHERE users.id = ?", [Cookie::get('id_user')]);
@@ -63,6 +68,16 @@ class Product extends Controller
   }
 
   public function editStock() {
+    $data = [
+        "cabang_id" => $_POST["cabang_id"],
+        "nama_product" => $_POST["nama_product"],
+        "quantity" => $_POST["quantity"]
+    ];
+
+    $dbProduct = DB::table("products")->where("id", $data["cabang_id"])->update($data);
+    if ($dbProduct) {
+        return redirect("/check-stock");
+    }
     
   }
 
