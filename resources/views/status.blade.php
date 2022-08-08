@@ -401,6 +401,7 @@
                             </div>
                         </div>
                     </div>
+                    <img src="{{asset('img/maps.png')}}"
                     <table class="table">
                       <thead>
                         <tr>
