@@ -33,65 +33,63 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
         <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
+ <!-- Sidebar - Brand -->
+ <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('index')}}">
+  <div class="sidebar-brand-icon rotate-n-15">
+      <i class="fas fa-laugh-wink"></i>
+  </div>
+  <div class="sidebar-brand-text mx-3">Minum Rasa</div>
+</a>
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('index')}}">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">Minum Rasa</div>
-            </a>
+<!-- Divider -->
+<hr class="sidebar-divider my-0">
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+<!-- Nav Item - Dashboard -->
+<li class="nav-item active">
+  <a class="nav-link" href="{{route("index")}}">
+      <i class="fas fa-fw fa-tachometer-alt"></i>
+      <span>Master Data</span></a>
+</li>
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="{{route("index")}}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Master Data</span></a>
-            </li>
+<!-- Divider -->
+<hr class="sidebar-divider">
+<!-- Nav Item - Pages Collapse Menu -->
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-            <!-- Nav Item - Pages Collapse Menu -->
+<!-- Nav Item - Utilities Collapse Menu -->
+<li class="nav-item">
+  <a class="nav-link collapsed"  href="{{route("checkstock")}}">
+      <i class="fas fa-fw fa-wrench"></i>
+      <span>Check Stok</span>
+  </a>
+</li>
+<!-- Divider -->
+<hr class="sidebar-divider">
 
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed"  href="{{route("checkstock")}}">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Check Stok</span>
-                </a>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+<!-- Heading -->
 
-            <!-- Heading -->
-        
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{route("registrasi.user")}}">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Registrasi Cabang</span></a>
-            </li>
+<!-- Nav Item - Tables -->
+<li class="nav-item">
+  <a class="nav-link" href="{{route("registrasi.user")}}">
+      <i class="fas fa-fw fa-table"></i>
+      <span>Registrasi Cabang</span></a>
+</li>
 
-            <hr class="sidebar-divider" >
-            <li class="nav-item">
-                <a class="nav-link collapsed"  data-toggle="collapse" data-target="#collapsePages"
-                aria-expanded="true" aria-controls="collapsePages" href="#">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Transaksi</span>
-                    <div id="collapsePages"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                          
-                            <a class="collapse-item"  href="{{route("transaksi.keluar")}}">Barang Masuk</a>
-                            <a class="collapse-item" href="{{route("transaksi.masuk")}}">Blank Keluar</a>
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <hr class="sidebar-divider" >
-
+<hr class="sidebar-divider" >
+<li class="nav-item">
+  <a class="nav-link collapsed"  data-toggle="collapse" data-target="#collapsePages"
+  aria-expanded="true" aria-controls="collapsePages" href="#">
+      <i class="fas fa-fw fa-wrench"></i>
+      <span>Transaksi</span>
+      <div id="collapsePages"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            
+              <a class="collapse-item"  href="{{route("transaksi.keluar")}}">Barang Masuk</a>
+              <a class="collapse-item" href="{{route("transaksi.masuk")}}">Blank Keluar</a>
+          </div>
+      </div>
+  </a>
+</li>
+<hr class="sidebar-divider" >
 
 
         </ul>
@@ -311,15 +309,8 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-                    </div>
-
                     <!-- Content Row -->
                     <div class="row">
-
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
@@ -348,7 +339,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                Jumlah Cabang</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$countToko ?? ''}}</div>
+                                            {{-- <div class="h5 mb-0 font-weight-bold text-gray-800">{{$countToko}}</div> --}}
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -405,59 +396,54 @@
                             </div>
                         </div>
                     </div>
-
-                    <h4 style="text-align: center">Permintaan barang</h4>    
+                    {{-- <img src="{{asset('img/maps.png')}}" --}}
                     <table class="table">
-                        <thead>
-                          <tr>
-                            <th scope="col">No</th>
-                            <th scope="col">Barang</th>
-                            <th scope="col">Kapasitas</th>
-                            <th scope="col">Permintaan dari</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Aksi</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($dbGetStock as $products)
-                   
-                          <tr>
-                            <th scope="row">{{ $products->id}}</th>
-                            <td>{{$products->nama_product}}</td>
-                            <td>{{$products->quantity}}</td>
-                            <td>{{$products->to_cabang}}</td>
-                            @if ($products->status == 0)
-                            <td>Belum Dikirim</td>
-                            @else
-                            <td>Sudah Dikirim</td>
-                            @endif
-                            <td>
-                               @if ($products->status == 0) 
-                                <a class="btn btn-danger" href="{{route('stock.edit.status', $products->id)}}">
-                                    Terima
-                                </a>
-                                @elseif ($products->status == 2) 
-                                <a class="btn btn-danger disabled" href="#">
-                                    Selesai
-                                @else
-                                <a class="btn btn-danger disabled" href="{{route('stock.edit.status', $products->id)}}">
-                                    Sedang Proses
-                                </a>
-                                @endif
-                                
-            
-                            
-                            </td>
+                      <thead>
+                        <tr>
+                          <th scope="col">No</th>
+                          <th scope="col">Barang</th>
+                          <th scope="col">Kapasitas</th>
+                          <th scope="col">Dikirim Untuk</th>
+                          <th scope="col">Status</th>
+                          <th scope="col">Aksi</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          @foreach ($dbTransactionOut as $products)
+                 
+                        <tr>
+                          <th scope="row">{{ $products->id}}</th>
+                          <td>{{$products->nama_product}}</td>
+                          <td>{{$products->quantity}}</td>
+                          <td>{{$products->to_cabang}}</td>
+                          @if ($products->status == 0)
+                          <td>Belum Dikirim</td>
+                          @else
+                          <td>Sudah Dikirim</td>
+                          @endif
+                          <td>
+                             @if ($products->status == 1) 
+                              <a class="btn btn-danger" href="{{route('done.stock', [$products->nama_product,$products->quantity,$products->id])}}">
+                                  Laporan Diterima
+                              </a>
+                              @else
+                              <a class="btn btn-danger disabled" href="{{route('stock.edit.status', $products->id)}}">
+                                  Selesai
+                              </a>
+                              @endif
                               
-                          </tr>
-                            @endforeach
-                        </tbody>
-                      </table>
-                      <div class="margin-custom" style="margin-top: 200px"></div>
-                     
-
-
+                          
+                          </td>
+                            
+                        </tr>
+                          @endforeach
+                      </tbody>
+                    </table>
+                  
  
+
+
+
                                             </div>
                                           </div>
                                           
@@ -468,7 +454,6 @@
                         </div>
                         {{-- @endforeach --}}
 
-                  
                         <!-- Content Row -->
                 <!-- /.container-fluid --> --
 
@@ -492,23 +477,23 @@
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href={{route("logout")}}>Logout</a>
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href={{route("logout")}}>Logout</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>

@@ -19,12 +19,13 @@ class CreateStockApprovesTable extends Migration
             $table->integer("quantity");
             $table->integer("from_id");
             $table->integer("to_id");
-            $table->integer("status"); 
+            $table->integer("status");
+            $table->string("keterangan");
             $table->timestamps();
         });
     }
 
-    /**
+    /*
      * Reverse the migrations.
      *
      * @return void

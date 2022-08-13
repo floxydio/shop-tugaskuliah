@@ -45,9 +45,10 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="{{route("index")}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
+                  
             </li>
 
             <!-- Divider -->
@@ -56,9 +57,17 @@
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed"  href="{{route("checkstock")}}">
+                <a class="nav-link collapsed"  data-toggle="collapse" data-target="#collapsePages"
+                aria-expanded="true" aria-controls="collapsePages" href="{{route("checkstock")}}">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Check Stok</span>
+                    <span>Transaksi</span>
+                    <div id="collapsePages"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                          
+                            <a class="collapse-item" href="404.html">404 Page</a>
+                            <a class="collapse-item" href="blank.html">Blank Page</a>
+                        </div>
+                    </div>
                 </a>
             </li>
             <!-- Divider -->
@@ -314,6 +323,7 @@
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
                         <a href="{{route('stock.export')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+    
                     </div>
 
                     <!-- Content Row -->
@@ -404,52 +414,123 @@
                             </div>
                         </div>
                     </div>
-                      <h4 style="text-align: center">Data Kirim - Terima barang</h4>    
-                      <table class="table">
+
+                    <h4 style="text-align: center">Data Toko</h4>   
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Add Product
+                      </button>
+                      
+                      <!-- Modal -->
+                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <form action="{{route("products.save")}}" method="POST"> 
+                                @csrf
+                                <div class="form-group">
+                                  <label for="exampleInputEmail1">Nama Product</label>
+                                  <input type="text" class="form-control" id="nama_product" aria-describedby="emailHelp" placeholder="Nama Product" name="nama_product">
+                                </div>
+                                <div class="form-group">
+                                  <label for="exampleInputEmail1">Quantity Product</label>
+                                  <input type="text" class="form-control" id="quantity" aria-describedby="emailHelp" placeholder="Quantity Product" name="quantity">
+                                </div>
+                                <div class="form-group">
+                                  <label for="exampleInputEmail1">Cabang ID</label>
+                                  <input type="text" class="form-control" id="owned_by" aria-describedby="emailHelp" placeholder="Stock Product" name="owned_by">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Kode Product</label>
+                                    <input type="text" class="form-control" id="kode_product" aria-describedby="emailHelp" placeholder="Stock Product" name="kode_product">
+                                  </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            
+                            </form>
+                            </div>
+                          
+                          </div>
+                        </div>
+                      </div>
+                    <table class="table">
                         <thead>
                           <tr>
                             <th scope="col">No</th>
                             <th scope="col">Barang</th>
                             <th scope="col">Kapasitas</th>
-                            <th scope="col">Permintaan dari</th>
-                            <th scope="col">Menuju ke </th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Aksi</th>
+                            <th scope="col">Cabang</th>
+                            <th scope="col">Kode</th>
                           </tr>
                         </thead>
                         <tbody>
-                            @foreach ($dbGetStock as $products)
-                   
+                            @foreach ($dbProduct as $products)
                           <tr>
                             <th scope="row">{{ $products->id}}</th>
-                            <td>{{$products->nama_product}}</td>
+                            <td>{{$products->nama}}</td>
                             <td>{{$products->quantity}}</td>
-                            <td>{{$products->to_cabang}}</td>
-                            <td>{{$products->from_cabang}}</td>
-                            @if ($products->status == 0)
-                            <td>Belum Dikirim</td>
-                            @else
-                            <td>Sudah Dikirim</td>
-                            @endif
-                            <td>
-                               @if ($products->status == 1) 
-                                <a class="btn btn-danger" href="{{route('done.stock', $products->id)}}">
-                                    Laporan Diterima
-                                </a>
-                                @else
-                                <a class="btn btn-danger disabled" href="{{route('stock.edit.status', $products->id)}}">
-                                    Selesai
-                                </a>
-                                @endif
-                                
-                            
-                            </td>
+                            <td>{{$products->name}}</td>
+                            <td>{{$products->kode_product}}</td>
+                          
                               
                           </tr>
                             @endforeach
                         </tbody>
                       </table>
+
+                      <div class="row justify-content-between">
+                        <h4 style="text-align: center" class="mr-5">Data Kirim - Terima barang</h4>
+                       
+                       </div>   
+                 <table class="table">
+                   <thead>
+                     <tr>
+                       <th scope="col">No</th>
+                       <th scope="col">Barang</th>
+                       <th scope="col">Kapasitas</th>
+                       <th scope="col">Permintaan dari</th>
+                       <th scope="col">Menuju ke </th>
+                       <th scope="col">Status</th>
+                       {{-- <th scope="col">Aksi</th> --}}
+                     </tr>
+                   </thead>
+                   <tbody>
+                       @foreach ($dbGetStock as $products)
+              
+                     <tr>
+                       <th scope="row">{{ $products->id}}</th>
+                       <td>{{$products->nama_product}}</td>
+                       <td>{{$products->quantity}}</td>
+                       <td>{{$products->to_cabang}}</td>
+                       <td>{{$products->from_cabang}}</td>
                     
+                         
+                     </tr>
+                       @endforeach
+                   </tbody>
+                 </table>
+               
+
+
+                                        </div>
+                                      </div>
+                                      
+                                      
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- @endforeach --}}
+
+              
+                    <!-- Content Row -->
+            
+
    
                                             </div>
                                           </div>

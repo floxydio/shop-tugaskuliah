@@ -10,11 +10,12 @@ class Product extends Controller
 {
     //
     public function index() {
-        $dbProduct = DB::select("select products.id, users.name,products.nama,products.quantity,products.status from products LEFT JOIN users ON products.owned_by = users.id");
+
+        $cookieId = Cookie::get("id_user");
+        $dbProduct = DB::select("select products.id, users.name,products.nama,products.quantity,products.status from products LEFT JOIN users ON products.owned_by = users.id WHERE owned_by != ?",[$cookieId]);
         $countToko = DB::table("users")->count();
         $countProduct = DB::table("products")->count();
         $cookie = Cookie::get('username');
-        $cookieId = Cookie::get("id_user");
         $cookieRole = Cookie::get("role_user");
         // $countCabang = DB::select("select count(*) as count from users where role = 0");
         $countCabang = DB::table("users")->where("role", "0")->count();

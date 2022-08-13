@@ -47,9 +47,9 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="{{route("index")}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>Master Data</span></a>
             </li>
 
             <!-- Divider -->
@@ -77,22 +77,23 @@
 
             <hr class="sidebar-divider" >
             <li class="nav-item">
-                <a class="nav-link collapsed"  href="{{route("stock.status")}}">
+                <a class="nav-link collapsed"  data-toggle="collapse" data-target="#collapsePages"
+                aria-expanded="true" aria-controls="collapsePages" href="#">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Status</span>
+                    <span>Transaksi</span>
+                    <div id="collapsePages"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                          
+                            <a class="collapse-item"  href="{{route("transaksi.keluar")}}">Barang Masuk</a>
+                            <a class="collapse-item" href="{{route("transaksi.masuk")}}">Blank Keluar</a>
+                        </div>
+                    </div>
                 </a>
             </li>
             <hr class="sidebar-divider" >
-            <li class="nav-item">
-                <a class="nav-link collapsed"  href="{{route("request.stock")}}">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Permintaan Barang</span>
-                </a>
-            </li>
 
 
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Sidebar Toggler (Sidebar) -->
             {{-- <div class="text-center d-none d-md-inline">

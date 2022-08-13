@@ -26,12 +26,16 @@ class Stocks extends Controller
             return redirect("/");
         }
     }
-    
 
-    public function finishStock($id) {
+   
+
+    public function finishStock($nama,$quantity,$id) {
+        $dbGetQuantiyProduct = DB::select("select products.* FROM products LEFT JOIN stock_approves ON products.owned_by = stock_approves.from_id WHERE products.nama = ? AND stock_approves.id = ?",[$nama,$id]);
         $data = [
             "status" => 2
         ];
+         DB::select(`UPDATE products SET quantity = ? - ? WHERE id = ?`, [$dbGetQuantiyProduct[0]->quantity, $quantity, $dbGetQuantiyProduct[0]->id]);
+        
         $dbProduct = DB::table("stock_approves")->where("id", $id)->update($data);
         if ($dbProduct) {
             return redirect("/");

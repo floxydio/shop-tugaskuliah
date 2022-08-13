@@ -5,6 +5,7 @@ use App\Http\Controllers\Product;
 use App\Http\Controllers\RequestStock;
 use App\Http\Controllers\Stocks;
 use App\Http\Controllers\SuperAdmin;
+use App\Http\Controllers\Transaksi;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Route;
 
@@ -29,10 +30,13 @@ Route::patch("/history-stock/:id", [Product::class, "editHistoryStock"])->name("
 Route::post("/stock-request", [Stocks::class, "setStock"])->name("stock.request");
 Route::get("/edit/status/{id}", [Stocks::class, "approveStock"])->name("stock.edit.status");
 Route::get("/status", [Stocks::class, "status"])->name("stock.status");
-Route::get("/edit/status-done/{id}", [Stocks::class, "finishStock"])->name("done.stock");
+Route::get("/edit/status-done/{nama}/{quantity}/{id}", [Stocks::class, "finishStock"])->name("done.stock");
 Route::get("/superadmin", [SuperAdmin::class, "index"])->name("superadmin");
 Route::get("stock/export/", [SuperAdmin::class, "generateReport"])->name("stock.export");
 Route::get("/request-stock", [RequestStock::class, "index"])->name("request.stock");
 Route::get("/registeruser", [AuthUser::class, "registrasiUser"])->name("registrasi.user");
 Route::post("/registeruser/save", [AuthUser::class, "registrasiAccount"])->name("registrasi.save");
 Route::post("/edit-stock/{id}", [Product::class, "editHistoryStock"])->name("edit.stock");
+Route::post("/products/save", [SuperAdmin::class, "inputStockSuperAdmin"])->name("products.save");
+Route::get("/transaction-out", [Transaksi::class, "loadIndex"])->name("transaksi.keluar");
+Route::get("/transaction-in", [Transaksi::class, "loadIndexMasuk"])->name("transaksi.masuk");

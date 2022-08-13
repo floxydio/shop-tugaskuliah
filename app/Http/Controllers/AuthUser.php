@@ -33,7 +33,7 @@ class AuthUser extends Controller
             Cookie::queue("id_user", $err->id);
             Cookie::queue("role_user", $err->role);
             if ($err->role == "1" || $err->role == 1) {
-                redirect("/superadmin")
+                return redirect("/superadmin")
             ;} else {
 
                 return redirect("/");

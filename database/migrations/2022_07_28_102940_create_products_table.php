@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->integer("quantity");
             $table->string("image");
             $table->integer("owned_by");
+            $table->string("kode_product");
             $table->integer("status");
             $table->timestamps();
         });
