@@ -12,7 +12,7 @@ class Product extends Controller
     public function index() {
 
         $cookieId = Cookie::get("id_user");
-        $dbProduct = DB::select("select products.id, users.name,products.nama,products.quantity,products.status from products LEFT JOIN users ON products.owned_by = users.id WHERE owned_by != ?",[$cookieId]);
+        $dbProduct = DB::select("select products.owned_by,products.id, users.name,products.nama,products.quantity,products.status from products LEFT JOIN users ON products.owned_by = users.id WHERE owned_by != ?",[$cookieId]);
         $countToko = DB::table("users")->count();
         $countProduct = DB::table("products")->count();
         $cookie = Cookie::get('username');
@@ -28,6 +28,23 @@ class Product extends Controller
         }else  {
             return view('login');
         }
+    }
+
+    public function loadInventory() {
+        $cookieId = Cookie::get("id_user");
+        $dbProduct = DB::select("select products.id, users.name,products.nama,products.quantity,products.status from products LEFT JOIN users ON products.owned_by = users.id WHERE owned_by = ?",[$cookieId]);
+ 
+        $countToko = DB::table("users")->count();
+        $countProduct = DB::table("products")->count();
+        $cookie = Cookie::get('username');
+        $cookieRole = Cookie::get("role_user");
+        // $countCabang = DB::select("select count(*) as count from users where role = 0");
+        $countCabang = DB::table("users")->where("role", "0")->count();
+        $dbGetStock = DB::select("select stock_approves.id,stock_approves.quantity,users.id from_id, usr.id to_id,stock_approves.nama_product,users.name from_cabang, usr.name to_cabang, stock_approves.status FROM `stock_approves` LEFT JOIN users ON stock_approves.from_id = users.id LEFT JOIN users usr ON stock_approves.to_id = usr.id WHERE to_id != ?",[$cookieId]);
+       
+        return view('inventory', compact("countProduct", "countToko", "dbProduct","cookieId", "cookie", "dbGetStock", "countCabang") );
+         
+
     }
 
     public function editHistoryStock() {

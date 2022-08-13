@@ -34,73 +34,82 @@
     <div id="wrapper">
         <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
-    <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('index')}}">
-      <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
-      </div>
-      <div class="sidebar-brand-text mx-3">Minum Rasa</div>
-  </a>
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('index')}}">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Minum Rasa</div>
+            </a>
 
-  <!-- Divider -->
-  <hr class="sidebar-divider my-0">
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
 
-  <!-- Nav Item - Dashboard -->
-  <li class="nav-item active">
-    <a class="nav-link"  data-toggle="collapse" data-target="#collapseMasterData"
-    aria-expanded="true" aria-controls="collapsePages">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Master Data</span></a>
-        <div id="collapseMasterData"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-              
-                <a class="collapse-item"  href="{{route("inventory")}}">Data Gudang</a>
-                <a class="collapse-item" href="{{route("index")}}">Data Barang</a>
-            </div>
-        </div>
-</li>
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link"  data-toggle="collapse" data-target="#collapseMasterData"
+                aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Master Data</span></a>
+                    <div id="collapseMasterData"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                          
+                            <a class="collapse-item"  href="{{route("transaksi.keluar")}}">Data Gudang</a>
+                            <a class="collapse-item" href="{{route("index")}}">Data Barang</a>
+                        </div>
+                    </div>
+            </li>
 
-  <!-- Divider -->
-  <hr class="sidebar-divider">
-  <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <!-- Nav Item - Pages Collapse Menu -->
 
-  <!-- Nav Item - Utilities Collapse Menu -->
-  <li class="nav-item">
-      <a class="nav-link collapsed"  href="{{route("checkstock")}}">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Check Stok</span>
-      </a>
-  </li>
-  <!-- Divider -->
-  <hr class="sidebar-divider">
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed"  href="{{route("checkstock")}}">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Check Stok</span>
+                </a>
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
-  <!-- Heading -->
+            <!-- Heading -->
+        
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{route("registrasi.user")}}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Registrasi Cabang</span></a>
+            </li>
 
-  <!-- Nav Item - Tables -->
-  <li class="nav-item">
-      <a class="nav-link" href="{{route("registrasi.user")}}">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Registrasi Cabang</span></a>
-  </li>
+            <hr class="sidebar-divider" >
+            <li class="nav-item">
+              <a class="nav-link"  data-toggle="collapse" data-target="#collapseTransaksi"
+              aria-expanded="true" aria-controls="collapsePages">
+                  <i class="fas fa-fw fa-tachometer-alt"></i>
+                  <span>Transaksi</span></a>
+                  <div id="collapseTransaksi"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                      <div class="bg-white py-2 collapse-inner rounded">
+                        
+                          <a class="collapse-item"  href="{{route("transaksi.keluar")}}">Barang Keluar</a>
+                          <a class="collapse-item" href="{{route("transaksi.masuk")}}">Barang Masuk</a>
+                      </div>
+                  </div>
+          </li>
 
-  <hr class="sidebar-divider" >
-  <li class="nav-item">
-    <a class="nav-link"  data-toggle="collapse" data-target="#collapseTransaksi"
-    aria-expanded="true" aria-controls="collapsePages">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Transaksi</span></a>
-        <div id="collapseTransaksi"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-              
-                <a class="collapse-item"  href="{{route("transaksi.keluar")}}">Barang Keluar</a>
-                <a class="collapse-item" href="{{route("transaksi.masuk")}}">Barang Masuk</a>
-            </div>
-        </div>
-</li>
-
-  <hr class="sidebar-divider" >
+            <hr class="sidebar-divider" >
 
 
+            <!-- Divider -->
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            {{-- <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div> --}}
+
+            <!-- Sidebar Message -->
+           
 
         </ul>
         <!-- End of Sidebar -->
@@ -319,8 +328,15 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                    </div>
+
                     <!-- Content Row -->
                     <div class="row">
+
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
@@ -329,7 +345,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Total Semua Product</div>
-                                            {{-- <div class="h5 mb-0 font-weight-bold text-gray-800">{{$countProduct}}</div> --}}
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$countProduct}}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -349,7 +365,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                Jumlah Cabang</div>
-                                            {{-- <div class="h5 mb-0 font-weight-bold text-gray-800">{{$countToko}}</div> --}}
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$countCabang}}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -406,55 +422,77 @@
                             </div>
                         </div>
                     </div>
-                    {{-- <img src="{{asset('img/maps.png')}}" --}}
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th scope="col">No</th>
-                          <th scope="col">Barang</th>
-                          <th scope="col">Kapasitas</th>
-                          <th scope="col">Dikirim Untuk</th>
-                          <th scope="col">Status</th>
-                          <th scope="col">Aksi</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                          @foreach ($dbTransactionOut as $products)
+                    
                  
-                        <tr>
-                          <th scope="row">{{ $products->id}}</th>
-                          <td>{{$products->nama_product}}</td>
-                          <td>{{$products->quantity}}</td>
-                          <td>{{$products->to_cabang}}</td>
-                          @if ($products->status == 0)
-                          <td>Belum Dikirim</td>
-                          @else
-                          <td>Sudah Dikirim</td>
-                          @endif
-                          <td>
-                             @if ($products->status == 1) 
-                              <a class="btn btn-danger disabled" href="{{route('done.stock', [$products->nama_product,$products->quantity,$products->id])}}">
-                                  Laporan Diterima
-                              </a>
-                              @elseif ($products->status == 0)
+                 
+                      {{-- <h4 style="text-align: center">Data Toko</h4>     --}}
+                        <table class="table" style="margin-top: 20px">
+                            <thead>
+                              <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Barang</th>
+                                <th scope="col">Kapasitas</th>
+                                <th scope="col">Cabang</th>
+                                {{-- <th scope="col">Aksi</th> --}}
+                              </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($dbProduct as $products)
+                              <tr>
+                                <th scope="row">{{ $products->id}}</th>
+                                <td>{{$products->nama}}</td>
+                                <td>{{$products->quantity}}</td>
+                                <td>{{$products->name}}</td>
+                                {{-- <td>
+                                    <button class="btn btn-primary w-100" data-toggle="modal" data-target="#exampleModal">Pinjam</button>
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+                                            <form method="POST" action="{{route('stock.request')}}">
+                                                @csrf
 
-                              <a class="btn btn-danger" href="{{route('stock.edit.status', $products->id)}}">
-                                Kirim
-                            </a>
-                              @endif
-                              
-                          
-                          </td>
-                            
-                        </tr>
-                          @endforeach
-                      </tbody>
-                    </table>
-                  
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span>
+                                                </button>
+                                              </div>
+                                              <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label for="name">Nama Product</label>
+                                                    <input type="text" name="nama_product" class="form-control" id="nama_product" aria-describedby="emailHelp" value="{{old('nama_product', $products->nama)}}" readonly>
+                                                  </div>
+                                                <div class="form-group">
+                                                    <label for="name">Dari</label>
+                                                    <input type="text" name="from_id" class="form-control" id="from_id" aria-describedby="emailHelp" value="{{old('from_id', $products->id)}}" readonly>
+                                                  </div>
+                                                  
+                                                  <div class="form-group">
+                                                    <label for="name">Untuk</label>
+                                                    <input type="text" name="to_id" class="form-control" id="to_id" aria-describedby="emailHelp" value="{{old('to_id', $cookieId)}}" readonly>
+                                                  </div>
+                                                <div class="form-group">
+                                                    <label for="name">Quantity</label>
+                                                    <input type="text" name="quantity" class="form-control" id="quantity" aria-describedby="emailHelp" placeholder="Berapa banyak yang diinginkan...">
+                                                  </div>
+                                                
+                                                  <button type="submit" class="btn btn-primary">Ajukan</button>                  
+                                              </div>   
+
+                                             
+                                            </form>    
  
+                
+                                
+                                </td> --}}
+                                  
+                              </tr>
+                                @endforeach
+                            </tbody>
+                          </table>
 
 
-
+ 
                                             </div>
                                           </div>
                                           
@@ -465,6 +503,7 @@
                         </div>
                         {{-- @endforeach --}}
 
+                  
                         <!-- Content Row -->
                 <!-- /.container-fluid --> --
 
@@ -488,23 +527,23 @@
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href={{route("logout")}}>Logout</a>
-                </div>
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href={{route("logout")}}>Logout</a>
             </div>
         </div>
     </div>
+</div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>

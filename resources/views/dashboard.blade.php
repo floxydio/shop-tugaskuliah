@@ -47,9 +47,17 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="{{route("index")}}">
+                <a class="nav-link"  data-toggle="collapse" data-target="#collapseMasterData"
+                aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Master Data</span></a>
+                    <div id="collapseMasterData"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                          
+                            <a class="collapse-item"  href="{{route("inventory")}}">Data Gudang</a>
+                            <a class="collapse-item" href="{{route("index")}}">Data Barang</a>
+                        </div>
+                    </div>
             </li>
 
             <!-- Divider -->
@@ -76,20 +84,20 @@
             </li>
 
             <hr class="sidebar-divider" >
-            <li class="nav-item">
-                <a class="nav-link collapsed"  data-toggle="collapse" data-target="#collapsePages"
-                aria-expanded="true" aria-controls="collapsePages" href="#">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Transaksi</span>
-                    <div id="collapsePages"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+               <li class="nav-item">
+                <a class="nav-link"  data-toggle="collapse" data-target="#collapseTransaksi"
+                aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Transaksi</span></a>
+                    <div id="collapseTransaksi"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                           
-                            <a class="collapse-item"  href="{{route("transaksi.keluar")}}">Barang Masuk</a>
-                            <a class="collapse-item" href="{{route("transaksi.masuk")}}">Blank Keluar</a>
+                            <a class="collapse-item"  href="{{route("transaksi.keluar")}}">Barang Keluar</a>
+                            <a class="collapse-item" href="{{route("transaksi.masuk")}}">Barang Masuk</a>
                         </div>
                     </div>
-                </a>
             </li>
+
             <hr class="sidebar-divider" >
 
 
@@ -414,10 +422,53 @@
                             </div>
                         </div>
                     </div>
-
                     
-                      <h4 style="text-align: center">Data Toko</h4>    
-                        <table class="table">
+                    <h4 style="text-align: center">Data Toko</h4>   
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Add Product
+                      </button>
+                      
+                      <!-- Modal -->
+                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <form action="{{route("products.save")}}" method="POST"> 
+                                @csrf
+                                <div class="form-group">
+                                  <label for="exampleInputEmail1">Nama Product</label>
+                                  <input type="text" class="form-control" id="nama_product" aria-describedby="emailHelp" placeholder="Nama Product" name="nama_product">
+                                </div>
+                                <div class="form-group">
+                                  <label for="exampleInputEmail1">Quantity Product</label>
+                                  <input type="text" class="form-control" id="quantity" aria-describedby="emailHelp" placeholder="Quantity Product" name="quantity">
+                                </div>
+                                <div class="form-group">
+                                  <label for="exampleInputEmail1">Cabang ID</label>
+                                  <input type="text" class="form-control" id="owned_by" aria-describedby="emailHelp" placeholder="Stock Product" name="owned_by">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Kode Product</label>
+                                    <input type="text" class="form-control" id="kode_product" aria-describedby="emailHelp" placeholder="Stock Product" name="kode_product">
+                                  </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            
+                            </form>
+                            </div>
+                          
+                          </div>
+                        </div>
+                      </div>
+                 
+                      {{-- <h4 style="text-align: center">Data Toko</h4>     --}}
+                        <table class="table" style="margin-top: 20px">
                             <thead>
                               <tr>
                                 <th scope="col">No</th>
@@ -425,7 +476,7 @@
                                 <th scope="col">Kapasitas</th>
                                 <th scope="col">Cabang</th>
                                 <th scope="col">Aksi</th>
-                              </tr>
+                                </tr>
                             </thead>
                             <tbody>
                                 @foreach ($dbProduct as $products)
@@ -435,11 +486,11 @@
                                 <td>{{$products->quantity}}</td>
                                 <td>{{$products->name}}</td>
                                 <td>
-                                    <button class="btn btn-primary w-100" data-toggle="modal" data-target="#exampleModal">Pinjam</button>
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <button class="btn btn-primary w-100" data-toggle="modal" data-target="#pinjamModal">Pinjam</button>
+                                    <div class="modal fade" id="pinjamModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                           <div class="modal-content">
-                                            <form method="POST" action="{{route('stock.request')}}">
+                                            <form method="POST" action="{{route('stock.request',$products->owned_by)}}">
                                                 @csrf
 
                                             <div class="modal-header">
@@ -453,21 +504,19 @@
                                                     <label for="name">Nama Product</label>
                                                     <input type="text" name="nama_product" class="form-control" id="nama_product" aria-describedby="emailHelp" value="{{old('nama_product', $products->nama)}}" readonly>
                                                   </div>
-                                                <div class="form-group">
-                                                    <label for="name">Dari</label>
-                                                    <input type="text" name="from_id" class="form-control" id="from_id" aria-describedby="emailHelp" value="{{old('from_id', $products->id)}}" readonly>
-                                                  </div>
                                                   
-                                                  <div class="form-group">
-                                                    <label for="name">Untuk</label>
-                                                    <input type="text" name="to_id" class="form-control" id="to_id" aria-describedby="emailHelp" value="{{old('to_id', $cookieId)}}" readonly>
-                                                  </div>
                                                 <div class="form-group">
                                                     <label for="name">Quantity</label>
                                                     <input type="text" name="quantity" class="form-control" id="quantity" aria-describedby="emailHelp" placeholder="Berapa banyak yang diinginkan...">
                                                   </div>
                                                 
-                                                  <button type="submit" class="btn btn-primary">Ajukan</button>                  
+                                                <div class="form-group">
+                                                    <label for="komentar">Komentar</label>
+                                                    <textarea class="form-control" name="keterangan" id="keterangan" rows="3"></textarea>
+                                                </div>
+
+                                                
+                                                  <button type="submit" value="Ajukan" class="btn btn-primary">Ajukan</button>                  
                                               </div>   
 
                                              

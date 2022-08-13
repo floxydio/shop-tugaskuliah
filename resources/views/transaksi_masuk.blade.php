@@ -46,9 +46,17 @@
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item active">
-  <a class="nav-link" href="{{route("index")}}">
-      <i class="fas fa-fw fa-tachometer-alt"></i>
-      <span>Master Data</span></a>
+    <a class="nav-link"  data-toggle="collapse" data-target="#collapseMasterData"
+    aria-expanded="true" aria-controls="collapsePages">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Master Data</span></a>
+        <div id="collapseMasterData"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              
+                <a class="collapse-item"  href="{{route("inventory")}}">Data Gudang</a>
+                <a class="collapse-item" href="{{route("index")}}">Data Barang</a>
+            </div>
+        </div>
 </li>
 
 <!-- Divider -->
@@ -76,18 +84,17 @@
 
 <hr class="sidebar-divider" >
 <li class="nav-item">
-  <a class="nav-link collapsed"  data-toggle="collapse" data-target="#collapsePages"
-  aria-expanded="true" aria-controls="collapsePages" href="#">
-      <i class="fas fa-fw fa-wrench"></i>
-      <span>Transaksi</span>
-      <div id="collapsePages"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            
-              <a class="collapse-item"  href="{{route("transaksi.keluar")}}">Barang Masuk</a>
-              <a class="collapse-item" href="{{route("transaksi.masuk")}}">Blank Keluar</a>
-          </div>
-      </div>
-  </a>
+    <a class="nav-link"  data-toggle="collapse" data-target="#collapseTransaksi"
+    aria-expanded="true" aria-controls="collapsePages">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Transaksi</span></a>
+        <div id="collapseTransaksi"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              
+                <a class="collapse-item"  href="{{route("transaksi.keluar")}}">Barang Keluar</a>
+                <a class="collapse-item" href="{{route("transaksi.masuk")}}">Barang Masuk</a>
+            </div>
+        </div>
 </li>
 <hr class="sidebar-divider" >
 
@@ -397,6 +404,7 @@
                         </div>
                     </div>
                     {{-- <img src="{{asset('img/maps.png')}}" --}}
+                    
                     <table class="table">
                       <thead>
                         <tr>
@@ -420,7 +428,7 @@
                           <td>Belum Dikirim</td>
                           @else
                           <td>Sudah Dikirim</td>
-                          @endif
+                          @endif 
                           <td>
                              @if ($products->status == 1) 
                               <a class="btn btn-danger" href="{{route('done.stock', [$products->nama_product,$products->quantity,$products->id])}}">

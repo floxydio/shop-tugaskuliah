@@ -30,12 +30,14 @@ class Stocks extends Controller
    
 
     public function finishStock($nama,$quantity,$id) {
-        $dbGetQuantiyProduct = DB::select("select products.* FROM products LEFT JOIN stock_approves ON products.owned_by = stock_approves.from_id WHERE products.nama = ? AND stock_approves.id = ?",[$nama,$id]);
+        $dbGetQuantiyProduct = DB::select("select products.*,stock_approves.to_id untuk FROM products LEFT JOIN stock_approves ON products.owned_by = stock_approves.from_id WHERE products.nama = ? AND stock_approves.id = ?",[$nama,$id]);
         $data = [
             "status" => 2
         ];
-         DB::select(`UPDATE products SET quantity = ? - ? WHERE id = ?`, [$dbGetQuantiyProduct[0]->quantity, $quantity, $dbGetQuantiyProduct[0]->id]);
-        
+        // echo json_encode($dbGetQuantiyProduct);
+        DB::select("UPDATE products SET quantity = ? - ? WHERE id = ? ", [$dbGetQuantiyProduct[0]->quantity, $quantity, $dbGetQuantiyProduct[0]->id]);
+        DB::select("INSERT INTO products (nama, quantity, owned_by,image,kode_product,status) VALUES (?, ?, ?,'',?,0)", [$nama, $quantity, $dbGetQuantiyProduct[0]->untuk,$dbGetQuantiyProduct[0]->kode_product]);
+        // echo $err;
         $dbProduct = DB::table("stock_approves")->where("id", $id)->update($data);
         if ($dbProduct) {
             return redirect("/");
@@ -43,8 +45,9 @@ class Stocks extends Controller
     }
 
 
-    public function setStock() {
+    public function setStock($toId) {
         $getCookies = Cookie::get("id_user");
+        $_POST["from_id"] = $toId;
         $_POST["to_id"] = $getCookies;
 
         $data = [
@@ -52,10 +55,14 @@ class Stocks extends Controller
             "quantity" => $_POST["quantity"],
             "from_id" => $_POST["from_id"],
             "to_id" => $_POST["to_id"],
+            "keterangan" => $_POST["keterangan"],
             "status" => 0
         ];
         $dbProduct = DB::table("stock_approves")->insert($data);
-        echo $dbProduct;
+        // echo $dbProduct;
+        if ($dbProduct) {
+            return redirect("/");
+        }
        
     }
 

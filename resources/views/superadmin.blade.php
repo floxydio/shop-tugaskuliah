@@ -57,19 +57,19 @@
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed"  data-toggle="collapse" data-target="#collapsePages"
-                aria-expanded="true" aria-controls="collapsePages" href="{{route("checkstock")}}">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Transaksi</span>
-                    <div id="collapsePages"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <a class="nav-link"  data-toggle="collapse" data-target="#collapseTransaksi"
+                aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Transaksi</span></a>
+                    <div id="collapseTransaksi"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                           
-                            <a class="collapse-item" href="404.html">404 Page</a>
-                            <a class="collapse-item" href="blank.html">Blank Page</a>
+                            <a class="collapse-item"  href="{{route("transaksi.keluar")}}">Barang Keluar</a>
+                            <a class="collapse-item" href="{{route("transaksi.masuk")}}">Barang Masuk</a>
                         </div>
                     </div>
-                </a>
             </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -476,18 +476,16 @@
                             <td>{{$products->quantity}}</td>
                             <td>{{$products->name}}</td>
                             <td>{{$products->kode_product}}</td>
-                          
-                              
                           </tr>
                             @endforeach
                         </tbody>
                       </table>
 
-                      <div class="row justify-content-between">
+                      {{-- <div class="row justify-content-between">
                         <h4 style="text-align: center" class="mr-5">Data Kirim - Terima barang</h4>
                        
-                       </div>   
-                 <table class="table">
+                       </div>    --}}
+                 {{-- <table class="table">
                    <thead>
                      <tr>
                        <th scope="col">No</th>
@@ -513,7 +511,7 @@
                      </tr>
                        @endforeach
                    </tbody>
-                 </table>
+                 {{-- </table> --}} --
                
 
 

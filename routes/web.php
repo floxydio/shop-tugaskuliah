@@ -27,7 +27,7 @@ Route::post("login/save", [AuthUser::class, "login"])->name("login.save");
 Route::get("/logout", [AuthUser::class, "logout"])->name("logout");
 Route::post("/history-stock", [Product::class, "postHistoryStock"])->name("stock.save");
 Route::patch("/history-stock/:id", [Product::class, "editHistoryStock"])->name("stock.edit");
-Route::post("/stock-request", [Stocks::class, "setStock"])->name("stock.request");
+Route::post("/stock-request/{id}", [Stocks::class, "setStock"])->name("stock.request");
 Route::get("/edit/status/{id}", [Stocks::class, "approveStock"])->name("stock.edit.status");
 Route::get("/status", [Stocks::class, "status"])->name("stock.status");
 Route::get("/edit/status-done/{nama}/{quantity}/{id}", [Stocks::class, "finishStock"])->name("done.stock");
@@ -40,3 +40,4 @@ Route::post("/edit-stock/{id}", [Product::class, "editHistoryStock"])->name("edi
 Route::post("/products/save", [SuperAdmin::class, "inputStockSuperAdmin"])->name("products.save");
 Route::get("/transaction-out", [Transaksi::class, "loadIndex"])->name("transaksi.keluar");
 Route::get("/transaction-in", [Transaksi::class, "loadIndexMasuk"])->name("transaksi.masuk");
+Route::get("/inventory", [Product::class, "loadInventory"])->name("inventory");
