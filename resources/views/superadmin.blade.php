@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Minum Rasa - Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -74,7 +74,23 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-        
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link"  data-toggle="collapse" data-target="#collapseMasterDataReport"
+                aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Laporan</span></a>
+                    <div id="collapseMasterDataReport"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                          
+                            <a class="collapse-item"  href="{{route("laporan.masuk")}}">Laporan Barang</a>
+                            <a class="collapse-item" href="{{route("laporan.user")}}">Laporan User</a>
+                        </div>
+                    </div>
+            </li>
+
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
@@ -320,7 +336,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Dashboard Admin</h1>
                         <a href="{{route('stock.export')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
     

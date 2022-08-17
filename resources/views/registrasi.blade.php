@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Minum Rasa - Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -34,73 +34,82 @@
     <div id="wrapper">
         <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('index')}}">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+           <!-- Sidebar - Brand -->
+           <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('index')}}">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-laugh-wink"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">Minum Rasa</div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item">
+            <a class="nav-link"  data-toggle="collapse" data-target="#collapseMasterData"
+            aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Master Data</span></a>
+                <div id="collapseMasterData"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                      
+                        <a class="collapse-item"  href="{{route("inventory")}}">Data Gudang</a>
+                        <a class="collapse-item" href="{{route("index")}}">Data Barang</a>
+                    </div>
                 </div>
-                <div class="sidebar-brand-text mx-3">Minum Rasa</div>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+        <!-- Nav Item - Pages Collapse Menu -->
+
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed"  href="{{route("checkstock")}}">
+                <i class="fas fa-fw fa-wrench"></i>
+                <span>Check Stok</span>
             </a>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider">
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+        <!-- Heading -->
+    
+        <!-- Nav Item - Tables -->
+        <li class="nav-item active">
+            <a class="nav-link" href="{{route("registrasi.user")}}">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Registrasi Cabang</span></a>
+        </li>
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
+        <hr class="sidebar-divider" >
+           <li class="nav-item">
+            <a class="nav-link"  data-toggle="collapse" data-target="#collapseTransaksi"
+            aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Transaksi</span></a>
+                <div id="collapseTransaksi"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                      
+                        <a class="collapse-item"  href="{{route("transaksi.keluar")}}">Barang Keluar</a>
+                        <a class="collapse-item" href="{{route("transaksi.masuk")}}">Barang Masuk</a>
+                    </div>
+                </div>
+        </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-            <!-- Nav Item - Pages Collapse Menu -->
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed"  href="{{route("checkstock")}}">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Check Stok</span>
-                </a>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-        
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Registrasi Cabang</span></a>
-            </li>
-
-            <hr class="sidebar-divider" >
-            <li class="nav-item">
-                <a class="nav-link collapsed"  href="{{route("stock.status")}}">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Status</span>
-                </a>
-            </li>
-            <hr class="sidebar-divider" >
-            <li class="nav-item">
-                <a class="nav-link collapsed"  href="{{route("request.stock")}}">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Permintaan Barang</span>
-                </a>
-            </li>
+        <hr class="sidebar-divider" >
 
 
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+        <!-- Divider -->
 
-            <!-- Sidebar Toggler (Sidebar) -->
-            {{-- <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div> --}}
+        <!-- Sidebar Toggler (Sidebar) -->
+        {{-- <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div> --}}
 
-            <!-- Sidebar Message -->
-           
+        <!-- Sidebar Message -->
+       
 
         </ul>
         <!-- End of Sidebar -->

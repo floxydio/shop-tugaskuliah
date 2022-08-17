@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Minum Rasa - Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -34,64 +34,90 @@
     <div id="wrapper">
         <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
-          <!-- Sidebar - Brand -->
-          <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('index')}}">
-            <div class="sidebar-brand-icon rotate-n-15">
-                <i class="fas fa-laugh-wink"></i>
-            </div>
-            <div class="sidebar-brand-text mx-3">Minum Rasa</div>
-        </a>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0">
-
-        <!-- Nav Item - Dashboard -->
-        <li class="nav-item active">
-            <a class="nav-link" href="{{route("index")}}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Master Data</span></a>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-        <!-- Nav Item - Pages Collapse Menu -->
-
-        <!-- Nav Item - Utilities Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed"  href="{{route("checkstock")}}">
-                <i class="fas fa-fw fa-wrench"></i>
-                <span>Check Stok</span>
-            </a>
-        </li>
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-    
-        <!-- Nav Item - Tables -->
-        <li class="nav-item">
-            <a class="nav-link" href="{{route("registrasi.user")}}">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Registrasi Cabang</span></a>
-        </li>
-
-        <hr class="sidebar-divider" >
-        <li class="nav-item">
-            <a class="nav-link"  data-toggle="collapse" data-target="#collapseTransaksi"
-            aria-expanded="true" aria-controls="collapsePages">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Transaksi</span></a>
-                <div id="collapseTransaksi"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                      
-                        <a class="collapse-item"  href="{{route("transaksi.keluar")}}">Barang Keluar</a>
-                        <a class="collapse-item" href="{{route("transaksi.masuk")}}">Barang Masuk</a>
-                    </div>
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('index')}}">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
                 </div>
-        </li>
+                <div class="sidebar-brand-text mx-3">Minum Rasa</div>
+            </a>
 
-        <hr class="sidebar-divider" >
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
 
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link"  data-toggle="collapse" data-target="#collapseMasterData"
+                aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Master Data</span></a>
+                    <div id="collapseMasterData"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                          
+                            <a class="collapse-item"  href="{{route("inventory")}}">Data Gudang</a>
+                            <a class="collapse-item" href="{{route("index")}}">Data Barang</a>
+                        </div>
+                    </div>
+            </li>
+
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link"  data-toggle="collapse" data-target="#collapseMasterDataReport"
+                aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Laporan</span></a>
+                    <div id="collapseMasterDataReport"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                          
+                            <a class="collapse-item"  href="{{route("laporan.masuk")}}">Laporan Barang</a>
+                            <a class="collapse-item" href="{{route("laporan.user")}}">Laporan User</a>
+                        </div>
+                    </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <!-- Nav Item - Pages Collapse Menu -->
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item active">
+                <a class="nav-link collapsed"  href="{{route("checkstock")}}">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Check Stok</span>
+                </a>
+            </li>
+            <!-- Divider -->
+            {{-- <hr class="sidebar-divider"> --}}
+
+            <!-- Heading -->
+        
+            <!-- Nav Item - Tables -->
+            {{-- <li class="nav-item">
+                <a class="nav-link" href="{{route("registrasi.user")}}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Registrasi Cabang</span></a>
+            </li> --}}
+
+            <hr class="sidebar-divider" >
+               <li class="nav-item">
+                <a class="nav-link"  data-toggle="collapse" data-target="#collapseTransaksi"
+                aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Transaksi</span></a>
+                    <div id="collapseTransaksi"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                          
+                            <a class="collapse-item"  href="{{route("transaksi.keluar")}}">Barang Keluar</a>
+                            <a class="collapse-item" href="{{route("transaksi.masuk")}}">Barang Masuk</a>
+                        </div>
+                    </div>
+            </li>
+
+            <hr class="sidebar-divider" >
+
+
+            <!-- Divider -->
 
             <!-- Sidebar Toggler (Sidebar) -->
             {{-- <div class="text-center d-none d-md-inline">
@@ -448,13 +474,57 @@
                             </div>
                         </div>
                     </div>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Add Product
+                      </button>
                       
+                      <!-- Modal -->
+                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <form action="{{route("products.save")}}" method="POST"> 
+                                @csrf
+                                <div class="form-group">
+                                  <label for="exampleInputEmail1">Nama Product</label>
+                                  <input type="text" class="form-control" id="nama_product" aria-describedby="emailHelp" placeholder="Nama Product" name="nama_product">
+                                </div>
+                                <div class="form-group">
+                                  <label for="exampleInputEmail1">Quantity Product</label>
+                                  <input type="text" class="form-control" id="quantity" aria-describedby="emailHelp" placeholder="Quantity Product" name="quantity">
+                                </div>
+                                <div class="form-group">
+                                  <label for="exampleInputEmail1">Cabang ID</label>
+                                  <input type="text" class="form-control" id="owned_by" aria-describedby="emailHelp" placeholder="Stock Product" name="owned_by">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Kode Product</label>
+                                    <input type="text" class="form-control" id="kode_product" aria-describedby="emailHelp" placeholder="Stock Product" name="kode_product">
+                                  </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            
+                            </form>
+                            </div>
+                          
+                          </div>
+                        </div>
+                      </div>
+                 
+
                     <table class="table">
                         <thead>
                           <tr>
                             <th scope="col">No</th>
                             <th scope="col">Barang</th>
                             <th scope="col">Kapasitas</th>
+                            <th scope="col">Kode Product</th>
                             <th scope="col">Action</th>
                           </tr>
                         </thead>
@@ -462,8 +532,9 @@
                             @foreach ($dbProductSss as $products)
                           <tr>
                             <th scope="row">{{ $products->id}}</th>
-                            <td>{{$products->nama_product}}</td>
+                            <td>{{$products->nama}}</td>
                             <td>{{$products->quantity}}</td>
+                            <td>{{$products->kode_product}}</td>
                             <td>
                                 <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">Edit</button>
                                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -481,13 +552,9 @@
                                           <div class="modal-body">
                                             <div class="form-group">
                                                 <label for="name">Nama Product</label>
-                                                <input type="text" name="nama_product" class="form-control" id="nama_product" aria-describedby="emailHelp" value="{{old('nama_product', $products->nama_product)}}" readonly>
+                                                <input type="text" name="nama_product" class="form-control" id="nama_product" aria-describedby="emailHelp" value="{{old('nama', $products->nama)}}" readonly>
                                               </div>
-                                            <div class="form-group">
-                                                <label for="name">Cabang ID</label>
-                                                <input type="text" name="from_id" class="form-control" id="from_id" aria-describedby="emailHelp" value="{{old('cabang_id', $idUser)}}" readonly>
-                                              </div>
-                                            
+                                        
                                             <div class="form-group">
                                                 <label for="name">Quantity</label>
                                                 <input type="text" name="quantity" class="form-control" id="quantity" aria-describedby="emailHelp" value="{{old('quantity', $products->quantity)}}" placeholder="Berapa banyak yang diinginkan...">

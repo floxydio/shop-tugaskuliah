@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Minum Rasa - Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -46,7 +46,7 @@
   <hr class="sidebar-divider my-0">
 
   <!-- Nav Item - Dashboard -->
-  <li class="nav-item active">
+  <li class="nav-item ">
     <a class="nav-link"  data-toggle="collapse" data-target="#collapseMasterData"
     aria-expanded="true" aria-controls="collapsePages">
         <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -56,6 +56,23 @@
               
                 <a class="collapse-item"  href="{{route("inventory")}}">Data Gudang</a>
                 <a class="collapse-item" href="{{route("index")}}">Data Barang</a>
+            </div>
+        </div>
+</li>
+
+<hr class="sidebar-divider my-0">
+
+<!-- Nav Item - Dashboard -->
+<li class="nav-item">
+    <a class="nav-link"  data-toggle="collapse" data-target="#collapseMasterDataReport"
+    aria-expanded="true" aria-controls="collapsePages">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Laporan</span></a>
+        <div id="collapseMasterDataReport"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              
+                <a class="collapse-item"  href="{{route("laporan.masuk")}}">Laporan Barang</a>
+                <a class="collapse-item" href="{{route("laporan.user")}}">Laporan User</a>
             </div>
         </div>
 </li>
@@ -72,7 +89,7 @@
       </a>
   </li>
   <!-- Divider -->
-  <hr class="sidebar-divider">
+  {{-- <hr class="sidebar-divider">
 
   <!-- Heading -->
 
@@ -81,10 +98,10 @@
       <a class="nav-link" href="{{route("registrasi.user")}}">
           <i class="fas fa-fw fa-table"></i>
           <span>Registrasi Cabang</span></a>
-  </li>
+  </li> --}}
 
   <hr class="sidebar-divider" >
-  <li class="nav-item">
+  <li class="nav-item active">
     <a class="nav-link"  data-toggle="collapse" data-target="#collapseTransaksi"
     aria-expanded="true" aria-controls="collapsePages">
         <i class="fas fa-fw fa-tachometer-alt"></i>

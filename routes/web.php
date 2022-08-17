@@ -1,7 +1,9 @@
 <?php
 
+use App\Exports\TransactionOut;
 use App\Http\Controllers\AuthUser;
 use App\Http\Controllers\Product;
+use App\Http\Controllers\Report;
 use App\Http\Controllers\RequestStock;
 use App\Http\Controllers\Stocks;
 use App\Http\Controllers\SuperAdmin;
@@ -41,3 +43,7 @@ Route::post("/products/save", [SuperAdmin::class, "inputStockSuperAdmin"])->name
 Route::get("/transaction-out", [Transaksi::class, "loadIndex"])->name("transaksi.keluar");
 Route::get("/transaction-in", [Transaksi::class, "loadIndexMasuk"])->name("transaksi.masuk");
 Route::get("/inventory", [Product::class, "loadInventory"])->name("inventory");
+Route::get("/laporan/barang-masuk",[Report::class,"viewTransaksiMasuk"])->name("laporan.masuk");
+Route::get("/laporan/generate/reportin", [Report::class,"exportTranscation"])->name("report.export");
+Route::get("/laporan/user-total", [Report::class,"viewUserTotal"])->name("laporan.user");
+ROute::get("/laporan/generate/reportuser", [Report::class,"exportUser"])->name("report.user");

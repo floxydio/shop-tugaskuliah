@@ -46,7 +46,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link"  data-toggle="collapse" data-target="#collapseMasterData"
                 aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -63,7 +63,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link"  data-toggle="collapse" data-target="#collapseMasterDataReport"
                 aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -89,12 +89,12 @@
                 </a>
             </li>
             <!-- Divider -->
-            {{-- <hr class="sidebar-divider"> --}}
+            {{-- <hr class="sidebar-divider">
 
             <!-- Heading -->
         
             <!-- Nav Item - Tables -->
-            {{-- <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="{{route("registrasi.user")}}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Registrasi Cabang</span></a>
@@ -344,168 +344,35 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    {{-- <!-- Page Heading -->
+                    <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                        <a href="{{route("report.user")}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-                    </div> --}}
+                    </div>
 
                     <!-- Content Row -->
-                    <div class="row">
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Total Semua Product</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$countProduct}}</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                               Jumlah Cabang</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$countCabang}}</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Pending Requests</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Content Row -->
                     
-                    <h4 style="text-align: center">Data Toko</h4>   
-                                         {{-- <h4 style="text-align: center">Data Toko</h4>     --}}
-                        <table class="table" style="margin-top: 20px">
-                            <thead>
-                              <tr>
-                                <th scope="col">No</th>
-                                <th scope="col">Barang</th>
-                                <th scope="col">Kapasitas</th>
-                                <th scope="col">Cabang</th>
-                                <th scope="col">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($dbProduct as $products)
-                              <tr>
-                                <th scope="row">{{ $products->id}}</th>
-                                <td>{{$products->nama}}</td>
-                                <td>{{$products->quantity}}</td>
-                                <td>{{$products->name}}</td>
-                                <td>
-                                    <button class="btn btn-primary w-100" data-toggle="modal" data-target="#pinjamModal">Pinjam</button>
-                                    <div class="modal fade" id="pinjamModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                          <div class="modal-content">
-                                            <form method="POST" action="{{route('stock.request',$products->owned_by)}}">
-                                                @csrf
-
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                  <span aria-hidden="true">&times;</span>
-                                                </button>
-                                              </div>
-                                              <div class="modal-body">
-                                                <div class="form-group">
-                                                    <label for="name">Nama Product</label>
-                                                    <input type="text" name="nama_product" class="form-control" id="nama_product" aria-describedby="emailHelp" value="{{old('nama_product', $products->nama)}}" readonly>
-                                                  </div>
-                                                  
-                                                <div class="form-group">
-                                                    <label for="name">Quantity</label>
-                                                    <input type="text" name="quantity" class="form-control" id="quantity" aria-describedby="emailHelp" placeholder="Berapa banyak yang diinginkan...">
-                                                  </div>
-                                                
-                                                <div class="form-group">
-                                                    <label for="komentar">Komentar</label>
-                                                    <textarea class="form-control" name="keterangan" id="keterangan" rows="3"></textarea>
-                                                </div>
-
-                                                
-                                                  <button type="submit" value="Ajukan" class="btn btn-primary">Ajukan</button>                  
-                                              </div>   
-
-                                             
-                                            </form>    
- 
-                
-                                
-                                </td>
-                                  
-                              </tr>
-                                @endforeach
-                            </tbody>
-                          </table>
-
-
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Kota Cabang</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($dbUser as $user)
+                   
+                          <tr>
+                            <th scope="row">{{ $user->id}}</th>
+                            <td>{{$user->name}}</td>
+                            <td>{{$user->kota_cabang}}</td>
+                          </tr>
+                            @endforeach
+                        </tbody>
+                      </table>
  
                                             </div>
                                           </div>
