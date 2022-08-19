@@ -71,7 +71,6 @@
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider">
 
             <!-- Heading -->
             <hr class="sidebar-divider my-0">
@@ -93,7 +92,7 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="{{route("registrasi.user")}}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Registrasi Cabang</span></a>
             </li>
