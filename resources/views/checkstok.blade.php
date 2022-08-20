@@ -35,8 +35,9 @@
         <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('index')}}">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                <div class="sidebar-brand-icon">
+                    {{-- <i class="fas fa-laugh-wink"></i> --}}
+                    <img src={{asset('img/haus.png')}} width="100" />
                 </div>
                 <div class="sidebar-brand-text mx-3">Minum Rasa</div>
             </a>
@@ -344,11 +345,11 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    {{-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Total Stock</h1>
                         <a href="#" data-toggle="modal" data-target="#tambahStok" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Tambah Stok Cabang</a>
-                    </div>
+                    </div> --}}
                     <div class="modal fade" id="tambahStok" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                           <div class="modal-content">
@@ -489,7 +490,7 @@
                               </button>
                             </div>
                             <div class="modal-body">
-                              <form action="{{route("products.save")}}" method="POST"> 
+                              <form action="{{route("products.saved")}}" method="POST"> 
                                 @csrf
                                 <div class="form-group">
                                   <label for="exampleInputEmail1">Nama Product</label>
@@ -536,8 +537,8 @@
                             <td>{{$products->quantity}}</td>
                             <td>{{$products->kode_product}}</td>
                             <td>
-                                <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">Edit</button>
-                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLabelEdit{{$products->id}}">Edit</button>
+                                <div class="modal fade" id="exampleModalLabelEdit{{$products->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelEdit" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                       <div class="modal-content">
                                         <form method="POST" action="{{route('edit.stock', $idUser)}}">
@@ -551,16 +552,24 @@
                                           </div>
                                           <div class="modal-body">
                                             <div class="form-group">
-                                                <label for="name">Nama Product</label>
-                                                <input type="text" name="nama_product" class="form-control" id="nama_product" aria-describedby="emailHelp" value="{{old('nama', $products->nama)}}" readonly>
+                                                <label for="exampleInputEmail1">Nama Product</label>
+                                                <input type="text" class="form-control" id="nama_product" aria-describedby="emailHelp" value="{{old("nama_product", $products->nama)}}" placeholder="Nama Product" name="nama_product">
                                               </div>
-                                        
-                                            <div class="form-group">
-                                                <label for="name">Quantity</label>
-                                                <input type="text" name="quantity" class="form-control" id="quantity" aria-describedby="emailHelp" value="{{old('quantity', $products->quantity)}}" placeholder="Berapa banyak yang diinginkan...">
+                                              <div class="form-group">
+                                                <label for="exampleInputEmail1">Quantity Product</label>
+                                                <input type="text" class="form-control" id="quantity" aria-describedby="emailHelp"  value="{{old("quantity", $products->quantity)}}"  placeholder="Quantity Product" name="quantity">
                                               </div>
-                                            
-                                              <button type="submit" class="btn btn-primary">Ajukan</button>                  
+                                              <div class="form-group">
+                                                <label for="exampleInputEmail1">Cabang ID</label>
+                                                <input type="text" class="form-control" id="owned_by" aria-describedby="emailHelp" placeholder="Stock Product" name="owned_by">
+                                              </div>
+              
+                                              <div class="form-group">
+                                                  <label for="exampleInputEmail1">Kode Product</label>
+                                                  <input type="text" class="form-control" id="kode_product" aria-describedby="emailHelp" placeholder="Stock Product" name="kode_product">
+                                                </div>
+                                              <button type="submit" class="btn btn-primary">Submit</button>
+                                                         
                                           </div>   
 
                                          

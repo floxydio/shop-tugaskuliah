@@ -45,6 +45,24 @@ class Stocks extends Controller
     }
 
 
+    public function inputStock() {
+
+        $data = [
+            "nama" => request("nama_product"),
+            "quantity" => request("quantity"),
+            "owned_by" => request("owned_by"),
+            "kode_product" => request("kode_product"),
+            "image" => "",
+            "status" => 0
+        
+        ];
+
+        $dbProduct = DB::table("products")->insert($data);
+        if ($dbProduct) {
+            return redirect("/");
+        }
+    }
+
     public function setStock($toId) {
         $getCookies = Cookie::get("id_user");
         $_POST["from_id"] = $toId;

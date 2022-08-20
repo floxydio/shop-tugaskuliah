@@ -47,3 +47,6 @@ Route::get("/laporan/barang-masuk",[Report::class,"viewTransaksiMasuk"])->name("
 Route::get("/laporan/generate/reportin", [Report::class,"exportTranscation"])->name("report.export");
 Route::get("/laporan/user-total", [Report::class,"viewUserTotal"])->name("laporan.user");
 ROute::get("/laporan/generate/reportuser", [Report::class,"exportUser"])->name("report.user");
+Route::post("/products/saved", [Stocks::class, "inputStock"])->name("products.saved");
+Route::get("/laporan/gudang", [Product::class, "viewGudang"])->name("laporan.gudang");
+Route::get("/laporan/generate/reportgudang", [Report::class,"exportInventory"])->name("reports.gudang");

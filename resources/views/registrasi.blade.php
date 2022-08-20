@@ -36,8 +36,10 @@
 
            <!-- Sidebar - Brand -->
            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('index')}}">
-            <div class="sidebar-brand-icon rotate-n-15">
-                <i class="fas fa-laugh-wink"></i>
+            <div class="sidebar-brand-icon">
+                {{-- <i class="fas fa-laugh-wink"></i> --}}
+                <img src={{asset('img/haus.png')}} width="100" />
+
             </div>
             <div class="sidebar-brand-text mx-3">Minum Rasa</div>
         </a>

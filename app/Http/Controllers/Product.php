@@ -47,18 +47,17 @@ class Product extends Controller
 
     }
 
-    public function editHistoryStock() {
-        $dataCookie = Cookie::get("id_user");
-        $_POST["cabang_id"] = $dataCookie;
+    public function editHistoryStock($id) {
 
         $data = [
-            "cabang_id" => $_POST["cabang_id"],
-            "nama_product" => $_POST["nama_product"],
-            "quantity" => $_POST["quantity"]
+            "owned_by" => $_POST["owned_by"],
+            "nama" => $_POST["nama"],
+            "quantity" => $_POST["quantity"],
+            "kode_product" => $_POST["kode_product"]
         
         ];
-        echo json_encode($data);
-        $dbProduct = DB::table("history_stocks")->where("id", $data["cabang_id"])->update($data);
+
+        $dbProduct = DB::table("products")->where("id", $id)->update($data);
         if ($dbProduct) {
             return redirect("/check-stock");
         }
@@ -104,6 +103,20 @@ class Product extends Controller
         $idUser = Cookie::get("id_user");
         $dbProductSss = DB::select("SELECT products.*, users.name FROM `products` LEFT JOIN users ON products.owned_by = users.id WHERE users.id = ?", [Cookie::get('id_user')]);
         return view("checkstok", compact("dbProductSss", "dataCookie", "idUser"));
+    }
+
+    public function viewGudang() {
+        $cookieId = Cookie::get("id_user");
+        $dbProduct = DB::select("select products.id, users.name,products.nama,products.quantity,products.status from products LEFT JOIN users ON products.owned_by = users.id WHERE owned_by = ?",[$cookieId]);
+ 
+        $countToko = DB::table("users")->count();
+        $countProduct = DB::table("products")->count();
+        $cookie = Cookie::get('username');
+        $cookieRole = Cookie::get("role_user");
+        // $countCabang = DB::select("select count(*) as count from users where role = 0");
+        $countCabang = DB::table("users")->where("role", "0")->count();
+        $dbGetStock = DB::select("select stock_approves.id,stock_approves.quantity,users.id from_id, usr.id to_id,stock_approves.nama_product,users.name from_cabang, usr.name to_cabang, stock_approves.status FROM `stock_approves` LEFT JOIN users ON stock_approves.from_id = users.id LEFT JOIN users usr ON stock_approves.to_id = usr.id WHERE to_id != ?",[$cookieId]);
+       return view('reports.laporan_gudang', compact("countProduct", "countToko", "dbProduct","cookieId", "cookie", "dbGetStock", "countCabang") );
     }
 
 }

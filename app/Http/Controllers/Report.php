@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\InventoryExport;
 use App\Exports\TransactionOut;
 use App\Exports\UsersExport;
 use App\Exports\UsersModelExport;
@@ -28,6 +29,10 @@ class Report extends Controller
 
     public function exportUser() {
         return Excel::download(new UsersModelExport, "users.xlsx");
+    }
+
+    public function exportInventory() {
+        return Excel::download(new InventoryExport, "inventory.xlsx");
     }
 
 }

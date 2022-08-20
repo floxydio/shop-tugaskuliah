@@ -36,8 +36,10 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('index')}}">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                <div class="sidebar-brand-icon">
+                    {{-- <i class="fas fa-laugh-wink"></i> --}}
+                    <img src={{asset('img/haus.png')}} width="100" />
+
                 </div>
                 <div class="sidebar-brand-text mx-3">Minum Rasa</div>
             </a>
@@ -73,6 +75,8 @@
                           
                             <a class="collapse-item"  href="{{route("laporan.masuk")}}">Laporan Barang</a>
                             <a class="collapse-item" href="{{route("laporan.user")}}">Laporan User</a>
+                            <a class="collapse-item" href="{{route("laporan.gudang")}}">Laporan Gudang</a>
+
                         </div>
                     </div>
             </li>
@@ -309,8 +313,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Dio</span>
-                                <img class="img-profile rounded-circle"
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Cookie::get("username")}}</span>                                <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
