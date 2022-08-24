@@ -122,6 +122,12 @@
 
             <hr class="sidebar-divider" >
 
+            <li class="nav-item">
+                <a class="nav-link collapsed"  href="{{route("stock.status")}}">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Status</span>
+                </a>
+            </li>
 
             <!-- Divider -->
 

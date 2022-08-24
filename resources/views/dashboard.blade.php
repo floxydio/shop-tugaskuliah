@@ -122,6 +122,13 @@
 
             <hr class="sidebar-divider" >
 
+            <li class="nav-item">
+                <a class="nav-link collapsed"  href="{{route("stock.status")}}">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Status</span>
+                </a>
+            </li>
+
 
             <!-- Divider -->
 
@@ -314,7 +321,8 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Cookie::get("username")}}</span>                                <img class="img-profile rounded-circle"
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Cookie::get("username")}}</span>                                
+                                <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->

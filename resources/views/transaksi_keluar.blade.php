@@ -125,6 +125,13 @@
 
   <hr class="sidebar-divider" >
 
+  <li class="nav-item">
+    <a class="nav-link collapsed"  href="{{route("stock.status")}}">
+        <i class="fas fa-fw fa-wrench"></i>
+        <span>Status</span>
+    </a>
+</li>
+
 
 
         </ul>
@@ -502,13 +509,14 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Form Pengisian</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-            <form method="POST" action="{{route("transaksi.report.out.send", $users->id)}}">
+            <img src={{asset('img/maps.png')}} width="100%" height="200" />
+            <form method="POST" class="mt-5" action="{{route("transaksi.report.out.send", $users->id)}}">
                 @csrf
                 <div class="form-group">
                     <select class="form-control" name="nama_product" id="nama_product">

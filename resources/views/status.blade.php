@@ -49,7 +49,7 @@
         <hr class="sidebar-divider my-0">
 
         <!-- Nav Item - Dashboard -->
-        <li class="nav-item active">
+        <li class="nav-item">
             <a class="nav-link"  data-toggle="collapse" data-target="#collapseMasterData"
             aria-expanded="true" aria-controls="collapsePages">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -121,6 +121,14 @@
         </li>
 
         <hr class="sidebar-divider" >
+
+        <li class="nav-item active">
+            <a class="nav-link collapsed"  href="{{route("stock.status")}}">
+                <i class="fas fa-fw fa-wrench"></i>
+                <span>Status</span>
+            </a>
+        </li>
+
         </ul>
         <!-- End of Sidebar -->
 
