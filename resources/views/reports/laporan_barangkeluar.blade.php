@@ -375,7 +375,7 @@
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <div class="row px-2 justify-content-between align-items-center">
-                                        <h6 class="m-0 font-weight-bold text-primary">Laporan Barang Masuk</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Laporan Barang Keluar</h6>
                     
                                         <div class="col-auto">
                                             <button class="btn btn-sm btn-primary" onclick="window.print()">
@@ -391,7 +391,7 @@
                                             <table class="w-100 mb-3">
                                                 <tbody><tr>
                                                     <td style="width: 25%; vertical-align: middle;">
-                                                        <p style="font-size: 23px; font-weight: bold;">Barang Masuk</p>
+                                                        <p style="font-size: 23px; font-weight: bold;">Barang Keluar</p>
                                                     </td>
                                                     <td style="width: 60%; vertical-align: top; font-size: 13px;">
                                                         <p class="mb-0">Haus Depok</p>
