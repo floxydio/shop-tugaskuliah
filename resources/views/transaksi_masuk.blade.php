@@ -9,10 +9,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Minum Rasa - Dashboard</title>
+    <title>Haus! Depok - Dashboard</title>
 
     <!-- Custom fonts for this template-->
-    <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -40,7 +41,7 @@
       <img src={{asset('img/haus.png')}} width="100" />
 
   </div>
-  <div class="sidebar-brand-text mx-3">Minum Rasa</div>
+  <div class="sidebar-brand-text mx-3">Haus! Depok</div>
 </a>
 
 <!-- Divider -->
@@ -452,11 +453,11 @@
                           <td>
                              @if ($products->status == 1) 
                               <a class="btn btn-danger" href="{{route('done.stock', [$products->nama_product,$products->quantity,$products->id])}}">
-                                  Laporan Diterima
+                                <i class="fa-solid fa-people-carry-box"></i> Laporan Diterima
                               </a>
                               @else
                               <a class="btn btn-danger disabled" href="{{route('stock.edit.status', $products->id)}}">
-                                  Selesai
+                                <i class="fa-solid fa-badge-check"></i> Selesai
                               </a>
                               @endif
                               

@@ -375,7 +375,7 @@
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <div class="row px-2 justify-content-between align-items-center">
-                                        <h6 class="m-0 font-weight-bold text-primary">Laporan User</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Laporan Barang Masuk</h6>
                     
                                         <div class="col-auto">
                                             <button class="btn btn-sm btn-primary" onclick="window.print()">
@@ -391,7 +391,7 @@
                                             <table class="w-100 mb-3">
                                                 <tbody><tr>
                                                     <td style="width: 25%; vertical-align: middle;">
-                                                        <p style="font-size: 23px; font-weight: bold;">Users</p>
+                                                        <p style="font-size: 23px; font-weight: bold;">Barang Masuk</p>
                                                     </td>
                                                     <td style="width: 60%; vertical-align: top; font-size: 13px;">
                                                         <p class="mb-0">Haus Depok</p>
@@ -409,16 +409,20 @@
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">No</th>
-                                                        <th scope="col">Nama Cabang</th>
-                                                        <th scope="col">Kota Cabang </th>
+                                                        <th scope="col">Tipe</th>
+                                                        <th scope="col">Nama Product</th>
+                                                        <th scope="col">Untuk Cabang</th>
+                                                        <th scope="col">Alamat</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($dbUser as $users)
+                                                    @foreach ($dbTransactionOut as $out)
                                                                                                     <tr>
-                                                                <th scope="row">{{$users->id}}</th>
-                                                                <td>{{$users->name}}</td>
-                                                               <td>{{$users->kota_cabang}}</td>
+                                                                <th scope="row">{{$out->id}}</th>
+                                                                <td>Barang Keluar</td>
+                                                               <td>{{$out->nama_product}}</td>
+                                                               <td>{{$out->to_cabang}}</td>
+                                                               <td>{{$out->alamat}}</td>
                                                             </tr>
                                                             @endforeach
                                                                                                                             </tbody>

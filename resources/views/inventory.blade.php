@@ -9,10 +9,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Minum Rasa - Dashboard</title>
+    <title>Haus! Depok - Dashboard</title>
 
     <!-- Custom fonts for this template-->
-    <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -41,7 +42,7 @@
                     <img src={{asset('img/haus.png')}} width="100" />
 
                 </div>
-                <div class="sidebar-brand-text mx-3">Minum Rasa</div>
+                <div class="sidebar-brand-text mx-3">Haus! Depok</div>
             </a>
 
             <!-- Divider -->
@@ -72,9 +73,9 @@
                     <span>Laporan</span></a>
                     <div id="collapseMasterDataReport"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                          
-                            <a class="collapse-item"  href="{{route("laporan.masuk")}}">Laporan Barang</a>
-                            <a class="collapse-item" href="{{route("laporan.user")}}">Laporan User</a>
+                            <a class="collapse-item"  href="{{route("report.out")}}">Laporan Barang Keluar</a>
+                            <a class="collapse-item"  href="{{route("laporan.masuk")}}">Laporan Barang Masuk</a>
+                           
                             <a class="collapse-item" href="{{route("laporan.gudang")}}">Laporan Gudang</a>
                         </div>
                     </div>
@@ -450,62 +451,18 @@
                             <thead>
                               <tr>
                                 <th scope="col">No</th>
-                                <th scope="col">Barang</th>
-                                <th scope="col">Kapasitas</th>
-                                <th scope="col">Cabang</th>
+                                <th scope="col">Nama Cabang</th>
+                                <th scope="col">Kota Cabang</th>
                                 {{-- <th scope="col">Aksi</th> --}}
                               </tr>
                             </thead>
                             <tbody>
-                                @foreach ($dbProduct as $products)
+                                @foreach ($getAlluser as $users)
                               <tr>
-                                <th scope="row">{{ $products->id}}</th>
-                                <td>{{$products->nama}}</td>
-                                <td>{{$products->quantity}}</td>
-                                <td>{{$products->name}}</td>
-                                {{-- <td>
-                                    <button class="btn btn-primary w-100" data-toggle="modal" data-target="#exampleModal">Pinjam</button>
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                          <div class="modal-content">
-                                            <form method="POST" action="{{route('stock.request')}}">
-                                                @csrf
-
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                  <span aria-hidden="true">&times;</span>
-                                                </button>
-                                              </div>
-                                              <div class="modal-body">
-                                                <div class="form-group">
-                                                    <label for="name">Nama Product</label>
-                                                    <input type="text" name="nama_product" class="form-control" id="nama_product" aria-describedby="emailHelp" value="{{old('nama_product', $products->nama)}}" readonly>
-                                                  </div>
-                                                <div class="form-group">
-                                                    <label for="name">Dari</label>
-                                                    <input type="text" name="from_id" class="form-control" id="from_id" aria-describedby="emailHelp" value="{{old('from_id', $products->id)}}" readonly>
-                                                  </div>
-                                                  
-                                                  <div class="form-group">
-                                                    <label for="name">Untuk</label>
-                                                    <input type="text" name="to_id" class="form-control" id="to_id" aria-describedby="emailHelp" value="{{old('to_id', $cookieId)}}" readonly>
-                                                  </div>
-                                                <div class="form-group">
-                                                    <label for="name">Quantity</label>
-                                                    <input type="text" name="quantity" class="form-control" id="quantity" aria-describedby="emailHelp" placeholder="Berapa banyak yang diinginkan...">
-                                                  </div>
-                                                
-                                                  <button type="submit" class="btn btn-primary">Ajukan</button>                  
-                                              </div>   
-
-                                             
-                                            </form>    
- 
-                
+                                <th scope="row">{{ $users->id}}</th>
+                                <td>{{$users->name}}</td>
+                                 <td>{{$users->kota_cabang}}</td>
                                 
-                                </td> --}}
-                                  
                               </tr>
                                 @endforeach
                             </tbody>

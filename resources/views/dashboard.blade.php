@@ -9,10 +9,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Minum Rasa - Dashboard</title>
+    <title>Haus! Depok - Dashboard</title>
 
     <!-- Custom fonts for this template-->
-    <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -41,7 +42,7 @@
                     <img src={{asset('img/haus.png')}} width="100" />
 
                 </div>
-                <div class="sidebar-brand-text mx-3">Minum Rasa</div>
+                <div class="sidebar-brand-text mx-3">Haus! Depok</div>
             </a>
 
             <!-- Divider -->
@@ -72,8 +73,9 @@
                     <span>Laporan</span></a>
                     <div id="collapseMasterDataReport"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                          
-                            <a class="collapse-item"  href="{{route("laporan.masuk")}}">Laporan Barang</a>
+                            <a class="collapse-item"  href="{{route("report.out")}}">Laporan Barang Keluar</a>
+                            <a class="collapse-item"  href="{{route("laporan.masuk")}}">Laporan Barang Masuk</a>
+                           
                             <a class="collapse-item" href="{{route("laporan.user")}}">Laporan User</a>
                             <a class="collapse-item" href="{{route("laporan.gudang")}}">Laporan Gudang</a>
                         </div>
@@ -451,7 +453,7 @@
                                 <th scope="col">Barang</th>
                                 <th scope="col">Kapasitas</th>
                                 <th scope="col">Cabang</th>
-                                <th scope="col">Aksi</th>
+                                {{-- <th scope="col">Aksi</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
@@ -462,45 +464,7 @@
                                 <td>{{$product->quantity}}</td>
                                 <td>{{$product->name}}</td>
                                 {{-- action="{{route('stock.request',$product->owned_by)}}" --}}
-                                <td>
-                                    <button class="btn btn-primary " data-toggle="modal" data-target="#exampleModalLabelEdit{{$product->id}}" >Pinjam</button>
-                                    <div class="modal fade" id="exampleModalLabelEdit{{$product->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelEdit" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                          <div class="modal-content">
-                                            <form method="POST" action="{{route('edit.stock', $product->id)}}">
-                                                @csrf
-    
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                  <span aria-hidden="true">&times;</span>
-                                                </button>
-                                              </div>
-                                              <div class="modal-body">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">Nama Product</label>
-                                                    <input type="text" class="form-control" id="nama" aria-describedby="emailHelp" value="{{old("nama", $product->nama)}}" placeholder="Nama Product" name="nama" readonly>
-                                                  </div>
-                                                  <div class="form-group">
-                                                    <label for="exampleInputEmail1">Quantity Product</label>
-                                                    <input type="text" class="form-control" id="quantity" aria-describedby="emailHelp"  value="{{old("quantity", $product->quantity)}}"  placeholder="Quantity Product" name="quantity">
-                                                  </div>
-                                                  <div class="form-group">
-                                                    <label for="exampleInputEmail1">Cabang ID</label>
-                                                    <input type="text" class="form-control" id="owned_by" aria-describedby="emailHelp"  value="{{old("owned_by", $product->owned_by)}}" placeholder="Stock Product" name="owned_by">
-                                                  </div>
-                  
-                                                  {{-- <div class="form-group">
-                                                      <label for="exampleInputEmail1">Kode Product</label>
-                                                      <input type="text" class="form-control" id="kode_product" aria-describedby="emailHelp"  value="{{old("kode_product", $products->kode_product)}}" placeholder="Stock Product" name="kode_product">
-                                                    </div> --}}
-                                                  <button type="submit" class="btn btn-primary">Submit</button>
-                                                             
-                                              </div>   
-    
-                                             
-                                            </form>     
-                                </td>
+                               
                               </tr>
                                   @endforeach
                             </tbody>

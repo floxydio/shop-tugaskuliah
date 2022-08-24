@@ -9,10 +9,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Minum Rasa - Dashboard</title>
+    <title>Haus! Depok - Dashboard</title>
 
     <!-- Custom fonts for this template-->
-    <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+    {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -41,7 +43,7 @@
           <img src={{asset('img/haus.png')}} width="100" />
 
       </div>
-      <div class="sidebar-brand-text mx-3">Minum Rasa</div>
+      <div class="sidebar-brand-text mx-3">Haus! Depok</div>
   </a>
 
   <!-- Divider -->
@@ -73,7 +75,9 @@
         <div id="collapseMasterDataReport"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               
-                <a class="collapse-item"  href="{{route("laporan.masuk")}}">Laporan Barang</a>
+                <a class="collapse-item"  href="{{route("report.out")}}">Laporan Barang Keluar</a>
+                <a class="collapse-item"  href="{{route("laporan.masuk")}}">Laporan Barang Masuk</a>
+               
                 <a class="collapse-item" href="{{route("laporan.user")}}">Laporan User</a>
                 <a class="collapse-item" href="{{route("laporan.gudang")}}">Laporan Gudang</a>
 
@@ -427,7 +431,7 @@
                         </div>
                     </div>
                     {{-- <img src="{{asset('img/maps.png')}}" --}}
-                    <table class="table">
+                    {{-- <table class="table">
                       <thead>
                         <tr>
                           <th scope="col">No</th>
@@ -447,9 +451,9 @@
                           <td>{{$products->quantity}}</td>
                           <td>{{$products->to_cabang}}</td>
                           @if ($products->status == 0)
-                          <td>Belum Dikirim</td>
+                          <td><i class="fa-solid fa-boxes-packing"></i> Belum Dikirim</td>
                           @else
-                          <td>Sudah Dikirim</td>
+                          <td><i class="fa-solid fa-truck-ramp-box"></i> Sudah Dikirim</td>
                           @endif
                           <td>
                              @if ($products->status == 1) 
@@ -471,7 +475,86 @@
                       </tbody>
                     </table>
                   
- 
+  --}}
+
+  <table class="table" style="margin-top: 20px">
+    <thead>
+      <tr>
+        <th scope="col">No</th>
+        <th scope="col">Nama Cabang</th>
+        <th scope="col">Kota Cabang</th>
+        <th scope="col">Alamat</th>
+        <th scope="col">Action</th>
+        {{-- <th scope="col">Aksi</th> --}}
+      </tr>
+    </thead>
+    <tbody>
+        @foreach ($getAlluser as $users)
+      <tr>
+        <th scope="row">{{ $users->id}}</th>
+        <td>{{$users->name}}</td>
+         <td>{{$users->kota_cabang}}</td>
+         <td>{{$users->alamat}}</td>
+         <td>
+                <a class="btn btn-primary" data-toggle="modal" data-target="#modalTransaction{{$users->id}}">Request Stock</a>
+                <!-- Modal -->
+<div class="modal fade" id="modalTransaction{{$users->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form method="POST" action="{{route("transaksi.report.out.send", $users->id)}}">
+                @csrf
+                <div class="form-group">
+                    <select class="form-control" name="nama_product" id="nama_product">
+                        <option hidden>Choose Product</option>
+                        @foreach ($dbGetProduct as $item)
+                        <option value="{{ $item->nama }}">{{ $item->nama }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Nama Toko</label>
+                    <input type="text" class="form-control" value="{{$users->name}}" id="owned_by" aria-describedby="emailHelp" placeholder="Alamat" name="alamat" readonly>
+
+                </div>
+                <div class="form-group">
+
+                    <label for="exampleInputEmail1">Alamat Toko</label>
+                    <input type="text" class="form-control" value="{{$users->alamat}}" id="owned_by" aria-describedby="emailHelp" placeholder="Alamat" name="alamat" readonly>
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Jumlah</label>
+                    <input type="number" class="form-control" id="quantity" aria-describedby="emailHelp" placeholder="Jumlah" name="quantity">
+                </div>
+
+                {{-- <div class="form-group">
+                    <label for="exampleInputEmail1">Keterangan</label>
+                    <input type="text" class="form-control" id="keterangan" aria-describedby="emailHelp" placeholder="Keterangan" name="keterangan">
+                </div> --}}
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                  </div>          
+            </form>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+
+         </td>
+        
+      </tr>
+        @endforeach
+    </tbody>
+  </table>
 
 
 

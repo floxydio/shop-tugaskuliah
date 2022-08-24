@@ -22,6 +22,7 @@ class CreateStockApprovesTable extends Migration
             $table->integer("status");
             $table->string("keterangan");
             $table->timestamps();
+            $table->integer("tipe")->after("status");
         });
     }
 

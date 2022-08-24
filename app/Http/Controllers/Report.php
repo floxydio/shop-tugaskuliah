@@ -13,8 +13,14 @@ class Report extends Controller
 {
     //
 
+    public function viewTransaksiKeluar() {
+        $dbTransactionOut = DB::select("select stock_approves.id,users.alamat,stock_approves.quantity,users.id from_id, usr.id to_id,stock_approves.nama_product,users.name from_cabang, usr.name to_cabang, stock_approves.status FROM `stock_approves` LEFT JOIN users ON stock_approves.from_id = users.id LEFT JOIN users usr ON stock_approves.to_id = usr.id where stock_approves.tipe = 2");
+
+        return view('reports.laporan_barangkeluar',compact('dbTransactionOut'));
+    }
+
     public function viewTransaksiMasuk() {
-        $dbTransactionOut = DB::select("select stock_approves.id,stock_approves.quantity,users.id from_id, usr.id to_id,stock_approves.nama_product,users.name from_cabang, usr.name to_cabang, stock_approves.status FROM `stock_approves` LEFT JOIN users ON stock_approves.from_id = users.id LEFT JOIN users usr ON stock_approves.to_id = usr.id");
+        $dbTransactionOut = DB::select("select stock_approves.id,users.alamat,stock_approves.quantity,users.id from_id, usr.id to_id,stock_approves.nama_product,users.name from_cabang, usr.name to_cabang, stock_approves.status FROM `stock_approves` LEFT JOIN users ON stock_approves.from_id = users.id LEFT JOIN users usr ON stock_approves.to_id = usr.id where stock_approves.tipe = 1");
         return view('reports.laporan_barangmasuk', compact('dbTransactionOut'));
     }
 
