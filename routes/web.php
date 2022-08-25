@@ -53,3 +53,4 @@ Route::get("/laporan/barangkeluar", [Report::class,"viewTransaksiKeluar"])->name
 Route::get("/laporan/generate/reportgudang", [Report::class,"exportInventory"])->name("reports.gudang");
 Route::get("/chart/user",[Product::class, "chartUser"])->name("chart.user");
 Route::post("/registationstock/{id}", [Transaksi::class, "createStockApprove"])->name("transaksi.report.out.send");
+Route::get("/laporan/stock", [Report::class, "viewTotalStock"])->name("report.totalstok");

@@ -78,7 +78,7 @@
                     <img src={{asset('img/haus.png')}} width="100" />
                     {{-- <i class="fas fa-laugh-wink"></i> --}}
                 </div>
-                <div class="sidebar-brand-text mx-3">Haus! Depok</div>
+                <div class="sidebar-brand-text mx-3">Back Office</div>
             </a>
 
             <!-- Divider -->
@@ -423,6 +423,7 @@
                                                         <th scope="col">Nama Product</th>
                                                         <th scope="col">Untuk Cabang</th>
                                                         <th scope="col">Alamat</th>
+                                                        <th scope="col">Keterangan</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -433,6 +434,7 @@
                                                                <td>{{$out->nama_product}}</td>
                                                                <td>{{$out->to_cabang}}</td>
                                                                <td>{{$out->alamat}}</td>
+                                                               <td>{{$out->keterangan}}</td>
                                                             </tr>
                                                             @endforeach
                                                                                                                             </tbody>

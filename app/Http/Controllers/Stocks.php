@@ -46,11 +46,12 @@ class Stocks extends Controller
 
 
     public function inputStock() {
+        $userId = Cookie::get("id_user");
 
         $data = [
             "nama" => request("nama_product"),
             "quantity" => request("quantity"),
-            "owned_by" => request("owned_by"),
+            "owned_by" => $userId,
             "kode_product" => request("kode_product"),
             "image" => "",
             "status" => 0
@@ -59,7 +60,7 @@ class Stocks extends Controller
 
         $dbProduct = DB::table("products")->insert($data);
         if ($dbProduct) {
-            return redirect("/");
+            return redirect("/check-stock");
         }
     }
 
@@ -79,7 +80,7 @@ class Stocks extends Controller
         $dbProduct = DB::table("stock_approves")->insert($data);
         // echo $dbProduct;
         if ($dbProduct) {
-            return redirect("/");
+            return redirect("/check-stock");
         }
        
     }

@@ -78,7 +78,7 @@
                     {{-- <i class="fas fa-laugh-wink"></i> --}}
                     <img src={{asset('img/haus.png')}} width="100" />
                 </div>
-                <div class="sidebar-brand-text mx-3">Haus! Depok</div>
+                <div class="sidebar-brand-text mx-3">Back Office</div>
             </a>
 
             <!-- Divider -->

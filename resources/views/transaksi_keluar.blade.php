@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Haus! Depok - Dashboard</title>
+    <title>Back Office - Dashboard</title>
 
     <!-- Custom fonts for this template-->
     {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -43,7 +43,7 @@
           <img src={{asset('img/haus.png')}} width="100" />
 
       </div>
-      <div class="sidebar-brand-text mx-3">Haus! Depok</div>
+      <div class="sidebar-brand-text mx-3">Back Office</div>
   </a>
 
   <!-- Divider -->
@@ -542,10 +542,10 @@
                     <input type="number" class="form-control" id="quantity" aria-describedby="emailHelp" placeholder="Jumlah" name="quantity">
                 </div>
 
-                {{-- <div class="form-group">
+                <div class="form-group">
                     <label for="exampleInputEmail1">Keterangan</label>
                     <input type="text" class="form-control" id="keterangan" aria-describedby="emailHelp" placeholder="Keterangan" name="keterangan">
-                </div> --}}
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Save changes</button>

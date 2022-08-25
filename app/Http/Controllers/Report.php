@@ -6,6 +6,7 @@ use App\Exports\InventoryExport;
 use App\Exports\TransactionOut;
 use App\Exports\UsersExport;
 use App\Exports\UsersModelExport;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -14,13 +15,13 @@ class Report extends Controller
     //
 
     public function viewTransaksiKeluar() {
-        $dbTransactionOut = DB::select("select stock_approves.id,users.alamat,stock_approves.quantity,users.id from_id, usr.id to_id,stock_approves.nama_product,users.name from_cabang, usr.name to_cabang, stock_approves.status FROM `stock_approves` LEFT JOIN users ON stock_approves.from_id = users.id LEFT JOIN users usr ON stock_approves.to_id = usr.id where stock_approves.tipe = 2");
+        $dbTransactionOut = DB::select("select stock_approves.keterangan,stock_approves.id,users.alamat,stock_approves.quantity,users.id from_id, usr.id to_id,stock_approves.nama_product,users.name from_cabang, usr.name to_cabang, stock_approves.status FROM `stock_approves` LEFT JOIN users ON stock_approves.from_id = users.id LEFT JOIN users usr ON stock_approves.to_id = usr.id where stock_approves.tipe = 2");
 
         return view('reports.laporan_barangkeluar',compact('dbTransactionOut'));
     }
 
     public function viewTransaksiMasuk() {
-        $dbTransactionOut = DB::select("select stock_approves.id,users.alamat,stock_approves.quantity,users.id from_id, usr.id to_id,stock_approves.nama_product,users.name from_cabang, usr.name to_cabang, stock_approves.status FROM `stock_approves` LEFT JOIN users ON stock_approves.from_id = users.id LEFT JOIN users usr ON stock_approves.to_id = usr.id where stock_approves.tipe = 1");
+        $dbTransactionOut = DB::select("select stock_approves.keterangan,stock_approves.id,users.alamat,stock_approves.quantity,users.id from_id, usr.id to_id,stock_approves.nama_product,users.name from_cabang, usr.name to_cabang, stock_approves.status FROM `stock_approves` LEFT JOIN users ON stock_approves.from_id = users.id LEFT JOIN users usr ON stock_approves.to_id = usr.id where stock_approves.tipe = 1");
         return view('reports.laporan_barangmasuk', compact('dbTransactionOut'));
     }
 
@@ -29,16 +30,12 @@ class Report extends Controller
         return view("reports.laporan_totaluser", compact("dbUser"));
     }
 
-    public function exportTranscation() {
-        return Excel::download(new TransactionOut, 'transaction.xlsx');
-    }
+    public function viewTotalStock() {
+        $userID = Cookie::get("id_user");
+        $dbStock = DB::select("SELECT * FROM products WHERE id = ?", [$userID]);
 
-    public function exportUser() {
-        return Excel::download(new UsersModelExport, "users.xlsx");
-    }
+        return view("reports.laporan_stok", compact("dbStock"));
 
-    public function exportInventory() {
-        return Excel::download(new InventoryExport, "inventory.xlsx");
     }
 
 }
