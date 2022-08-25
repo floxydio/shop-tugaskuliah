@@ -57,7 +57,7 @@
                     <div id="collapseMasterData"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                           
-                            <a class="collapse-item"  href="{{route("transaksi.keluar")}}">Data Gudang</a>
+                            <a class="collapse-item"  href="{{route("inventory")}}">Data Gudang</a>
                             <a class="collapse-item" href="{{route("index")}}">Data Barang</a>
                         </div>
                     </div>
@@ -75,8 +75,9 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item"  href="{{route("report.out")}}">Laporan Barang Keluar</a>
                             <a class="collapse-item"  href="{{route("laporan.masuk")}}">Laporan Barang Masuk</a>
-                           
+                            <a class="collapse-item" href="{{route("laporan.user")}}">Laporan User</a>
                             <a class="collapse-item" href="{{route("laporan.gudang")}}">Laporan Gudang</a>
+                            <a class="collapse-item" href="{{route("report.totalstok")}}">Laporan Stok</a>
                         </div>
                     </div>
             </li>
@@ -372,7 +373,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Total Semua Product</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$countProduct}}</div>
+                                            {{-- <div class="h5 mb-0 font-weight-bold text-gray-800">{{$countProduct}}</div> --}}
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -392,7 +393,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                Jumlah Cabang</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$countCabang}}</div>
+                                            {{-- <div class="h5 mb-0 font-weight-bold text-gray-800">{{$countCabang}}</div> --}}
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -450,24 +451,59 @@
                         </div>
                     </div>
                     
-                 
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalGudang">
+                        Tambah Gudang
+                      </button>
+                      <div class="modal fade" id="modalGudang" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST" action="{{route('gudang.send')}}">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Nama Gudang</label>
+                                        <input type="text" class="form-control" id="nama_gudang" aria-describedby="emailHelp" placeholder="Nama" name="nama_gudang" >
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Alamat Gudang</label>
+                                        <input type="text" class="form-control" id="alamat_gudang" aria-describedby="emailHelp" placeholder="Alamat" name="alamat_gudang" >
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Cabang Gudang</label>
+                                        <input type="text" class="form-control" id="cabang_gudang" aria-describedby="emailHelp" placeholder="Kota Gudang" name="cabang_gudang" >
+                                    </div>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                  
                       {{-- <h4 style="text-align: center">Data Toko</h4>     --}}
                         <table class="table" style="margin-top: 20px">
                             <thead>
                               <tr>
                                 <th scope="col">No</th>
-                                <th scope="col">Nama Cabang</th>
-                                <th scope="col">Kota Cabang</th>
+                                <th scope="col">Nama Gudang</th>
+                                <th scope="col">Alamat Gudang</th>
+                                <th scope="col">Cabang Gudang</th>
                                 {{-- <th scope="col">Aksi</th> --}}
                               </tr>
                             </thead>
                             <tbody>
-                                @foreach ($getAlluser as $users)
+                                @foreach ($dbGudang as $gudang)
                               <tr>
-                                <th scope="row">{{ $users->id}}</th>
-                                <td>{{$users->name}}</td>
-                                 <td>{{$users->kota_cabang}}</td>
+                                <th scope="row">{{ $gudang->id}}</th>
+                                <td>{{$gudang->nama_gudang}}</td>
+                                 <td>{{$gudang->alamat_gudang}}</td>
+                                 <td>{{$gudang->cabang_gudang}}</td>
                                 
                               </tr>
                                 @endforeach

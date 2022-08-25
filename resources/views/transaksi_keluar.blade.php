@@ -77,9 +77,9 @@
               
                 <a class="collapse-item"  href="{{route("report.out")}}">Laporan Barang Keluar</a>
                 <a class="collapse-item"  href="{{route("laporan.masuk")}}">Laporan Barang Masuk</a>
-               
                 <a class="collapse-item" href="{{route("laporan.user")}}">Laporan User</a>
                 <a class="collapse-item" href="{{route("laporan.gudang")}}">Laporan Gudang</a>
+                <a class="collapse-item" href="{{route("report.totalstok")}}">Laporan Stok</a>
 
             </div>
         </div>

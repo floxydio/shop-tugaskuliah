@@ -93,7 +93,7 @@
                     <div id="collapseMasterData"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                           
-                            <a class="collapse-item"  href="{{route("transaksi.keluar")}}">Data Gudang</a>
+                            <a class="collapse-item"  href="{{route("inventory")}}">Data Gudang</a>
                             <a class="collapse-item" href="{{route("index")}}">Data Barang</a>
                         </div>
                     </div>
@@ -112,9 +112,10 @@
                           
                             <a class="collapse-item"  href="{{route("report.out")}}">Laporan Barang Keluar</a>
                             <a class="collapse-item"  href="{{route("laporan.masuk")}}">Laporan Barang Masuk</a>
-                           
                             <a class="collapse-item" href="{{route("laporan.user")}}">Laporan User</a>
                             <a class="collapse-item" href="{{route("laporan.gudang")}}">Laporan Gudang</a>
+                            <a class="collapse-item" href="{{route("report.totalstok")}}">Laporan Stok</a>
+
 
                         </div>
                     </div>
@@ -412,7 +413,7 @@
                                                     </td>
                                                 </tr>
                                             </tbody></table>
-                    
+                                            @if(Cookie::get("role_user") != "1" || Cookie::get("role_user") != 1)
                                             <table class="table table-striped mb-5">
                                                 <thead>
                                                     <tr>
@@ -421,20 +422,51 @@
                                                         <th scope="col">Nama Product</th>
                                                         <th scope="col">Untuk Cabang</th>
                                                         <th scope="col">Alamat</th>
+                                                        <th scope="col">Keterangan</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @foreach ($dbTransactionOut as $out)
                                                                                                     <tr>
                                                                 <th scope="row">{{$out->id}}</th>
-                                                                <td>Barang Keluar</td>
+                                                                <td>Barang Masuk</td>
                                                                <td>{{$out->nama_product}}</td>
                                                                <td>{{$out->to_cabang}}</td>
                                                                <td>{{$out->alamat}}</td>
+                                                               <td>{{$out->keterangan}}</td>
                                                             </tr>
                                                             @endforeach
                                                                                                                             </tbody>
                                             </table>
+                                            @else
+                                            <table class="table table-striped mb-5">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">No</th>
+                                                        <th scope="col">Tipe</th>
+                                                        <th scope="col">Nama Product</th>
+                                                        <th scope="col">Dari Cabang</th>
+                                                        <th scope="col">Untuk Cabang</th>
+                                                        <th scope="col">Alamat</th>
+                                                        <th scope="col">Keterangan</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($dbTransactionOut as $out)
+                                                                                                    <tr>
+                                                                <th scope="row">{{$out->id}}</th>
+                                                                <td>Barang Masuk</td>
+                                                               <td>{{$out->nama_product}}</td>
+                                                               <td>{{$out->from_cabang}}</td>
+                                                               <td>{{$out->to_cabang}}</td>
+                                                               <td>{{$out->alamat}}</td>
+                                                               <td>{{$out->keterangan}}</td>
+                                                            </tr>
+                                                            @endforeach
+                                                                                                                            </tbody>
+                                            </table>
+                                            @endif
+                    
                     
                                             <table class="w-100 mb-3">
                                                 <tbody><tr>

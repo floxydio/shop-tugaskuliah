@@ -78,6 +78,7 @@
                            
                             <a class="collapse-item" href="{{route("laporan.user")}}">Laporan User</a>
                             <a class="collapse-item" href="{{route("laporan.gudang")}}">Laporan Gudang</a>
+                            <a class="collapse-item" href="{{route("report.totalstok")}}">Laporan Stok</a>
                         </div>
                     </div>
             </li>

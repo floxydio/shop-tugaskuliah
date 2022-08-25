@@ -93,7 +93,7 @@
                     <div id="collapseMasterData"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                           
-                            <a class="collapse-item"  href="{{route("transaksi.keluar")}}">Data Gudang</a>
+                            <a class="collapse-item"  href="{{route("inventory")}}">Data Gudang</a>
                             <a class="collapse-item" href="{{route("index")}}">Data Barang</a>
                         </div>
                     </div>
@@ -109,13 +109,11 @@
                     <span>Laporan</span></a>
                     <div id="collapseMasterDataReport"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                          
                             <a class="collapse-item"  href="{{route("report.out")}}">Laporan Barang Keluar</a>
                             <a class="collapse-item"  href="{{route("laporan.masuk")}}">Laporan Barang Masuk</a>
-                           
                             <a class="collapse-item" href="{{route("laporan.user")}}">Laporan User</a>
                             <a class="collapse-item" href="{{route("laporan.gudang")}}">Laporan Gudang</a>
-
+                            <a class="collapse-item" href="{{route("report.totalstok")}}">Laporan Stok</a>
                         </div>
                     </div>
             </li>
@@ -383,7 +381,7 @@
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <div class="row px-2 justify-content-between align-items-center">
-                                        <h6 class="m-0 font-weight-bold text-primary">Laporan List Product</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Laporan Gudang</h6>
                     
                                         <div class="col-auto">
                                             <button class="btn btn-sm btn-primary" onclick="window.print()">
@@ -399,7 +397,7 @@
                                             <table class="w-100 mb-3">
                                                 <tbody><tr>
                                                     <td style="width: 25%; vertical-align: middle;">
-                                                        <p style="font-size: 23px; font-weight: bold;">Product</p>
+                                                        <p style="font-size: 23px; font-weight: bold;">Gudang</p>
                                                     </td>
                                                     <td style="width: 60%; vertical-align: top; font-size: 13px;">
                                                         <p class="mb-0">Haus Depok</p>
@@ -418,15 +416,18 @@
                                                     <tr>
                                                         <th scope="col">No</th>
                                                         <th scope="col">Nama</th>
-                                                        <th scope="col">Jumlah</th>
+                                                        <th scope="col">Alamat</th>
+
+                                                        <th scope="col">Kota</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @foreach ($dbProduct as $out)
                                                                                                     <tr>
                                                                 <th scope="row">{{$out->id}}</th>
-                                                                <td>{{$out->nama}}</td>
-                                                               <td>{{$out->quantity}}</td>
+                                                                <td>{{$out->nama_gudang}}</td>
+                                                               <td>{{$out->alamat_gudang}}</td>
+                                                               <td>{{$out->cabang_gudang}}</td>
                                                             </tr>
                                                             @endforeach
                                                                                                                             </tbody>

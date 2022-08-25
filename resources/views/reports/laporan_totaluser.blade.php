@@ -93,7 +93,7 @@
                     <div id="collapseMasterData"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                           
-                            <a class="collapse-item"  href="{{route("transaksi.keluar")}}">Data Gudang</a>
+                            <a class="collapse-item"  href="{{route("inventory")}}">Data Gudang</a>
                             <a class="collapse-item" href="{{route("index")}}">Data Barang</a>
                         </div>
                     </div>
@@ -109,13 +109,11 @@
                     <span>Laporan</span></a>
                     <div id="collapseMasterDataReport"  class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                          
                             <a class="collapse-item"  href="{{route("report.out")}}">Laporan Barang Keluar</a>
                             <a class="collapse-item"  href="{{route("laporan.masuk")}}">Laporan Barang Masuk</a>
-                           
                             <a class="collapse-item" href="{{route("laporan.user")}}">Laporan User</a>
                             <a class="collapse-item" href="{{route("laporan.gudang")}}">Laporan Gudang</a>
-
+                            <a class="collapse-item" href="{{route("report.totalstok")}}">Laporan Stok</a>
                         </div>
                     </div>
             </li>

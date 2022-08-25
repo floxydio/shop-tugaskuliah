@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Cookie;
 class AuthUser extends Controller
 {
     public function index() {
-        echo Cookie::get("role_user");
         if (Cookie::get("username") != null && Cookie::get("role_user") == 0) {
             return redirect("/");
         } else if (Cookie::get("username") != null && Cookie::get("role_user") == 1) {
@@ -52,6 +51,7 @@ class AuthUser extends Controller
             "name" => request("name"),
             "username" => request("username"),
             "password" => request("password"),
+            "alamat" => request("alamat"),
             "kota_cabang" => request("kota_cabang"),
             "role" => 0
         ];

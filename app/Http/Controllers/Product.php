@@ -31,21 +31,21 @@ class Product extends Controller
     }
 
     public function loadInventory() {
-        $cookieId = Cookie::get("id_user");
-        $dbProduct = DB::select("select products.id, users.name,products.nama,products.quantity,products.status from products LEFT JOIN users ON products.owned_by = users.id WHERE owned_by = ?",[$cookieId]);
- 
-        $countToko = DB::table("users")->count();
-        $countProduct = DB::table("products")->count();
-        $cookie = Cookie::get('username');
-        $cookieRole = Cookie::get("role_user");
-        // $countCabang = DB::select("select count(*) as count from users where role = 0");
-        $countCabang = DB::table("users")->where("role", "0")->count();
-        $getAlluser = DB::table("users")->get();
-        $dbGetStock = DB::select("select stock_approves.id,stock_approves.quantity,users.id from_id, usr.id to_id,stock_approves.nama_product,users.name from_cabang, usr.name to_cabang, stock_approves.status FROM `stock_approves` LEFT JOIN users ON stock_approves.from_id = users.id LEFT JOIN users usr ON stock_approves.to_id = usr.id WHERE to_id != ?",[$cookieId]);
-       
-        return view('inventory', compact("countProduct", "countToko", "dbProduct","cookieId", "cookie", "dbGetStock", "countCabang","getAlluser"));
-         
+        $dbGudang = DB::select("SELECT * FROM gudang");
+        
+        return view("inventory", compact("dbGudang"));
 
+    }
+
+    public function addGudang() {
+        $data = [
+            "nama_gudang" => $_POST["nama_gudang"],
+            "alamat_gudang" => $_POST["alamat_gudang"],
+            "cabang_gudang" => $_POST["cabang_gudang"]
+        ];
+
+        DB::table("gudang")->insert($data);
+        return redirect("/inventory");
     }
 
     public function editHistoryStock($id) {
@@ -107,7 +107,7 @@ class Product extends Controller
     }
 
     public function viewGudang() {
-        $dbProduct = DB::select("select * from products");
+        $dbProduct = DB::select("select * from gudang");
 
         return view('reports.laporan_gudang', compact("dbProduct") );
     }
